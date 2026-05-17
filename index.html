@@ -1,14 +1,712 @@
-/* WATERMARK BACKGROUND EFFECT */
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image: url('star_logo.png');
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: 65vmin;
-    opacity: 0.05;
-    pointer-events: none;
-    z-index: -1;
-    filter: grayscale(20%);
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Lone Star QuickSign Xpress Notary</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg-dark:#0b1c3a;
+    --gold:#d6af53;
+    --gold-hover:#f2cb73;
+    --text-light:#ffffff;
+    --text-muted:#abb8c9;
+    --card-bg:rgba(15,37,75,0.80);
+    --border-gold:rgba(214,175,83,0.25);
 }
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+
+    background:
+    linear-gradient(
+        135deg,
+        #081426 0%,
+        #0b1c3a 40%,
+        #132c57 100%
+    );
+
+    color:var(--text-light);
+    line-height:1.6;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* WATERMARK */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:url('star_logo.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:65vmin;
+    opacity:0.05;
+    z-index:-1;
+    pointer-events:none;
+}
+
+/* HEADER */
+
+header{
+    border-bottom:2px solid var(--gold);
+    background:rgba(11,28,58,0.94);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(12px);
+}
+
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    padding:15px 20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo-area{
+    display:flex;
+    align-items:center;
+}
+
+.logo-stack{
+    display:flex;
+    flex-direction:column;
+}
+
+.logo-text-main{
+    font-family:'Cinzel',serif;
+    font-size:1.35rem;
+    font-weight:800;
+    letter-spacing:1px;
+    color:white;
+}
+
+.logo-second-line{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-top:6px;
+}
+
+.logo-img{
+    height:34px;
+    width:auto;
+    object-fit:contain;
+}
+
+.logo-subtitle{
+    font-size:0.78rem;
+    letter-spacing:2px;
+    color:var(--gold);
+    font-weight:600;
+    text-transform:uppercase;
+}
+
+.nav-menu{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+.nav-menu a{
+    color:white;
+    text-decoration:none;
+    font-size:0.9rem;
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    transition:0.3s;
+}
+
+.nav-menu a:hover{
+    color:var(--gold);
+}
+
+/* HERO */
+
+.hero{
+    max-width:1200px;
+    margin:auto;
+    padding:90px 20px 40px;
+    text-align:center;
+}
+
+.hero h1{
+    font-family:'Cinzel',serif;
+    font-size:3.2rem;
+    font-weight:800;
+    letter-spacing:2px;
+    margin-bottom:10px;
+    text-shadow:0 2px 10px rgba(0,0,0,0.5);
+}
+
+.hero-subtitle{
+    color:var(--gold);
+    font-family:'Cinzel',serif;
+    font-size:1.1rem;
+    letter-spacing:3px;
+    margin-bottom:50px;
+    font-weight:600;
+}
+
+/* BUTTONS */
+
+.hero-ctas{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:60px;
+}
+
+.cta-btn{
+    padding:15px 30px;
+    border-radius:8px;
+
+    background:var(--card-bg);
+
+    border:1px solid var(--gold);
+
+    color:var(--gold);
+
+    text-decoration:none;
+
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+
+    transition:0.3s ease;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.25);
+}
+
+.cta-btn svg{
+    width:20px;
+    height:20px;
+    fill:currentColor;
+}
+
+.cta-btn:hover{
+    background:var(--gold);
+    color:var(--bg-dark);
+    transform:translateY(-3px);
+    box-shadow:0 6px 20px rgba(214,175,83,0.4);
+}
+
+/* FEATURES */
+
+.features-section{
+    max-width:1200px;
+    margin:0 auto 60px;
+    padding:0 20px;
+}
+
+.features-section h2{
+    font-family:'Cinzel',serif;
+    text-align:center;
+    color:var(--gold);
+    font-size:1.6rem;
+    margin-bottom:25px;
+    letter-spacing:2px;
+}
+
+.features-row{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.feature-card{
+    background:
+    linear-gradient(
+        135deg,
+        rgba(15,37,75,0.95) 0%,
+        rgba(10,24,49,0.95) 100%
+    );
+
+    border:1px solid var(--border-gold);
+
+    border-radius:8px;
+
+    padding:28px 20px;
+
+    text-align:center;
+
+    box-shadow:0 4px 15px rgba(0,0,0,0.18);
+}
+
+.feature-icon{
+    font-size:2rem;
+    margin-bottom:12px;
+}
+
+.feature-text{
+    font-size:1.15rem;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* REGION STRIP */
+
+.regions-strip{
+    background:rgba(5,14,31,0.8);
+
+    border-top:1px solid var(--border-gold);
+    border-bottom:1px solid var(--border-gold);
+
+    max-width:1100px;
+    margin:0 auto 50px;
+
+    border-radius:6px;
+
+    padding:16px 20px;
+
+    text-align:center;
+
+    font-size:1rem;
+}
+
+.regions-strip strong{
+    color:var(--gold);
+}
+
+/* SERVICES */
+
+.services-section{
+    max-width:1100px;
+    margin:auto;
+    padding:50px 20px 70px;
+}
+
+.services-section h2{
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:2.2rem;
+    margin-bottom:45px;
+}
+
+.services-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.services-column{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+details{
+    background:var(--card-bg);
+
+    border:1px solid var(--border-gold);
+
+    border-radius:8px;
+
+    overflow:hidden;
+
+    transition:0.3s;
+}
+
+details[open]{
+    border-color:var(--gold);
+    background:rgba(18,44,88,0.95);
+}
+
+summary{
+    padding:20px 22px;
+
+    font-size:1.15rem;
+    font-weight:700;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    cursor:pointer;
+
+    list-style:none;
+}
+
+summary::-webkit-details-marker{
+    display:none;
+}
+
+summary::after{
+    content:'+';
+    font-size:1.5rem;
+    color:var(--gold);
+}
+
+details[open] summary::after{
+    content:'−';
+}
+
+.details-content{
+    padding:18px 22px 22px;
+
+    border-top:1px solid rgba(214,175,83,0.1);
+
+    color:var(--text-muted);
+
+    font-size:1.02rem;
+
+    line-height:1.75;
+}
+
+/* FOOTER */
+
+footer{
+    background:#050e1f;
+    border-top:2px solid var(--gold);
+
+    padding:35px 20px;
+    text-align:center;
+}
+
+.sos-disclaimer{
+    max-width:850px;
+    margin:auto;
+
+    color:var(--text-muted);
+
+    font-size:0.85rem;
+    line-height:1.7;
+}
+
+.sos-disclaimer strong{
+    display:block;
+    margin-bottom:8px;
+
+    color:var(--gold);
+
+    font-family:'Cinzel',serif;
+
+    letter-spacing:1px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1024px){
+
+    .hero h1{
+        font-size:2.5rem;
+    }
+
+    .features-row{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .services-columns{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:768px){
+
+    .nav-container{
+        flex-direction:column;
+        gap:18px;
+    }
+
+    .nav-menu{
+        gap:20px;
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+
+    .features-row{
+        grid-template-columns:1fr;
+    }
+
+    .logo-text-main{
+        font-size:1.05rem;
+    }
+
+    .logo-subtitle{
+        font-size:0.65rem;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="nav-container">
+
+<div class="logo-area">
+
+<div class="logo-stack">
+
+<div class="logo-text-main">
+LONE STAR QUICKSIGN XPRESS
+</div>
+
+<div class="logo-second-line">
+<img src="star_logo.png" alt="Logo" class="logo-img">
+
+<span class="logo-subtitle">
+MOBILE & ONLINE NOTARY SERVICES
+</span>
+</div>
+
+</div>
+</div>
+
+<ul class="nav-menu">
+<li><a href="#about">About</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="about">
+
+<h1>LONE STAR QUICKSIGN XPRESS NOTARY</h1>
+
+<p class="hero-subtitle">
+AUTHORIZED IN TEXAS · SERVING CLIENTS WORLDWIDE
+</p>
+
+<div class="hero-ctas" id="contact">
+
+<!-- TEXT MESSAGE -->
+<a href="sms:+19152581693" class="cta-btn">
+
+<svg viewBox="0 0 24 24">
+<path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/>
+</svg>
+
+Text Now
+
+</a>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/19152581693" target="_blank" class="cta-btn">
+
+<svg viewBox="0 0 24 24">
+<path d="M12.012 2c-5.508 0-9.988 4.479-9.988 9.987 0 1.763.459 3.418 1.261 4.865l-1.285 4.693 4.805-1.258c1.399.763 2.993 1.199 4.686 1.199 5.507 0 9.987-4.479 9.987-9.987 0-5.508-4.48-9.987-9.987-9.987z"/>
+</svg>
+
+WhatsApp
+
+</a>
+
+<!-- EMAIL -->
+<a href="mailto:quicksignxpress@gmail.com" class="cta-btn">
+
+<svg viewBox="0 0 24 24">
+<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z"/>
+</svg>
+
+Email Inbox
+
+</a>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features-section">
+
+<h2>Features</h2>
+
+<div class="features-row">
+
+<div class="feature-card">
+<div class="feature-icon">💻</div>
+<div class="feature-text">REMOTE / ONLINE</div>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">🚗</div>
+<div class="feature-text">MOBILE NOTARY</div>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">🖊️</div>
+<div class="feature-text">IN-PERSON SIGNING</div>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon">⚡</div>
+<div class="feature-text">SAME-DAY / EMERGENCY</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- SERVICE AREA -->
+
+<div class="regions-strip">
+📍 <strong>In-Person Service Areas:</strong>
+Collin County | Dallas County | Denton County | Grayson County
+</div>
+
+<!-- SERVICES -->
+
+<section class="services-section" id="services">
+
+<h2>Our Specialized Services</h2>
+
+<div class="services-columns">
+
+<div class="services-column">
+
+<details>
+<summary>🏠 Loan & Real Estate Closings</summary>
+<div class="details-content">
+Purchase agreements, refinances, deeds of trust, and full loan closing packages managed systematically by an expert Certified Loan Signing Agent.
+</div>
+</details>
+
+<details>
+<summary>✍️ Powers of Attorney, Wills & Living Trusts</summary>
+<div class="details-content">
+Estate planning directives executed with confidentiality, identity verification, and professional care.
+</div>
+</details>
+
+<details>
+<summary>📜 Jurats & Acknowledgments</summary>
+<div class="details-content">
+Legal identity verification, formal acknowledgments, and sworn signature execution services.
+</div>
+</details>
+
+<details>
+<summary>🛡️ Affidavits & Sworn Statements</summary>
+<div class="details-content">
+Sworn declarations and affidavits prepared for legal, immigration, and official documentation.
+</div>
+</details>
+
+<details>
+<summary>📁 Deeds & Property Documents</summary>
+<div class="details-content">
+Quitclaim deeds, warranty deeds, title transfers, and property documentation support.
+</div>
+</details>
+
+<details>
+<summary>🎓 School & Adoption Records</summary>
+<div class="details-content">
+Academic certifications, transcripts, enrollment forms, and adoption paperwork notarization.
+</div>
+</details>
+
+</div>
+
+<div class="services-column">
+
+<details>
+<summary>📶 Mobile & Virtual Signings</summary>
+<div class="details-content">
+Secure Remote Online Notarization with encrypted video verification for clients worldwide.
+</div>
+</details>
+
+<details>
+<summary>🤝 Witness Services</summary>
+<div class="details-content">
+Certified witness services for contracts, wills, affidavits, and formal agreements.
+</div>
+</details>
+
+<details>
+<summary>💼 Business Contracts & Agreements</summary>
+<div class="details-content">
+Corporate agreements, NDAs, employment forms, and commercial business documents.
+</div>
+</details>
+
+<details>
+<summary>🏥 Medical Directives & Releases</summary>
+<div class="details-content">
+HIPAA releases, medical directives, living wills, and hospital bedside notarization.
+</div>
+</details>
+
+<details>
+<summary>🌍 Apostille Services</summary>
+<div class="details-content">
+Document authentication guidance for international and Texas Secretary of State submissions.
+</div>
+</details>
+
+<details>
+<summary>✈️ Travel Permissions & Minor Consent</summary>
+<div class="details-content">
+Parental consent forms, travel authorizations, and passport-related notarized documents.
+</div>
+</details>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="sos-disclaimer">
+
+<strong>
+Notice Regarding Legal Advice & Services
+</strong>
+
+I am not an attorney licensed to practice law in this state.
+I am not allowed to draft legal documents, give advice on legal matters,
+including immigration, or charge a fee for those activities.
+
+</div>
+
+</footer>
+
+</body>
+</html>
+```
