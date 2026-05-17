@@ -1,13 +1,1118 @@
-Looking at image 1, the hero content is left-aligned — I need to center everything. And the "Book an Appointment" button links to a broken form. I'll center the hero and replace the booking button with a simple built-in HTML form that collects responses directly on the page.Now I have a clear picture. I'll fix the `h1` alignment to center, add a proper booking form section, and add "Book an Appointment" + "View All Services" buttons that work correctly.Now add the booking form CSS and the two extra CTA buttons, plus the booking form section:Now update the hero HTML to add the two secondary CTA buttons and restructure the hero to be fully centered:Now add the JavaScript before `</body>`:Also add responsive styles for the form row on mobile:Here's what was fixed and added:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lone Star QuickSign Xpress Notary</title>
 
-**Centered layout** — the hero title, subtitle, and all buttons are now centered on the page. The `text-align: left` on the h1 was the culprit; it's now `center`.
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-**Booking form — no third-party service needed.** The "Book an Appointment" button reveals a clean built-in form right on the page. When submitted it:
-1. Validates all required fields (name, phone, service, date)
-2. Opens the client's email app pre-filled with all appointment details sent directly to `quicksignxpress@gmail.com`
-3. Opens WhatsApp in a new tab with the same info as a backup notification
-4. Shows a gold checkmark success message — no "Form not found" errors ever again
+<style>
+:root{
+    /* Matched directly to the logo: navy star body + vivid golden-yellow arrow */
+    --bg-dark:#0a1830;
+    --gold:#f5c200;
+    --gold-hover:#ffd633;
+    --text-light:#ffffff;
+    --text-muted:#a8b8d0;
+    --card-bg:rgba(10,28,64,0.82);
+    --border-gold:rgba(245,194,0,0.38);
+    --whatsapp-green:#25d366;
+}
 
-**"View All Services"** scrolls smoothly down to the services accordion section.
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
 
-No external form provider (Typeform, etc.) is used — everything runs entirely from the HTML file, so it works perfectly on GitHub Pages.
+body{
+    font-family:'Inter',sans-serif;
+    background: linear-gradient(135deg, #060f1e 0%, #0a1830 40%, #102248 100%);
+    color:var(--text-light);
+    line-height:1.6;
+    min-height:100vh;
+    overflow-x:hidden;
+    position:relative;
+}
+
+/* ── WATERMARK ── */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image: url('watermark.png');
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:75vmin;
+    opacity:0.13;
+    z-index:-1;
+    pointer-events:none;
+    filter: brightness(2) saturate(0);
+}
+
+/* ── HEADER ── */
+header{
+    border-bottom:2px solid var(--gold);
+    background:rgba(11,28,58,0.94);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(12px);
+}
+
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    padding:12px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* Small logo + text side-by-side in nav */
+.logo-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.nav-logo{
+    height:52px;
+    width:auto;
+    object-fit:contain;
+    filter:drop-shadow(0 2px 8px rgba(245,194,0,0.35));
+}
+
+.logo-text-main{
+    font-family:'Cinzel',serif;
+    font-size:1.2rem;
+    font-weight:800;
+    letter-spacing:1px;
+    color:white;
+    line-height:1.2;
+}
+
+.logo-subtitle{
+    font-size:0.7rem;
+    letter-spacing:2px;
+    color:var(--gold);
+    font-weight:600;
+    text-transform:uppercase;
+    margin-top:3px;
+}
+
+.nav-menu{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+.nav-menu a{
+    color:white;
+    text-decoration:none;
+    font-size:0.9rem;
+    font-weight:600;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    transition:0.3s;
+}
+
+.nav-menu a:hover{ color:var(--gold); }
+
+/* ── HERO ── */
+.hero{
+    max-width:1200px;
+    margin:auto;
+    padding:70px 20px 40px;
+    text-align:center;
+}
+
+/* Logo LEFT of title — horizontal row */
+.hero-header-block{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:center;
+    gap:28px;
+    margin-bottom:24px;
+}
+
+/* Big logo to the left */
+.hero .hero-logo-main{
+    height:190px;
+    width:auto;
+    object-fit:contain;
+    flex-shrink:0;
+    filter:drop-shadow(0 8px 30px rgba(245,194,0,0.5));
+}
+
+.hero h1{
+    font-family:'Cinzel',serif;
+    font-size:3.2rem;
+    font-weight:800;
+    letter-spacing:1px;
+    text-shadow:0 2px 10px rgba(0,0,0,0.6);
+    line-height:1.15;
+    text-align:center;
+}
+
+.hero-subtitle{
+    color:var(--gold);
+    font-family:'Cinzel',serif;
+    font-size:1.2rem;
+    letter-spacing:3px;
+    margin-bottom:45px;
+    font-weight:600;
+}
+
+/* ── CTAS ── */
+.hero-ctas{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:60px;
+}
+
+.cta-btn{
+    padding:15px 35px;
+    border-radius:8px;
+    background:var(--card-bg);
+    border:1px solid var(--gold);
+    color:var(--text-light);
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    transition:0.3s ease;
+    box-shadow:0 4px 15px rgba(0,0,0,0.25);
+}
+
+.cta-btn svg{ width:22px; height:22px; }
+.cta-btn.btn-text svg,
+.cta-btn.btn-email svg { fill:var(--text-light); }
+.cta-btn.btn-whatsapp svg { fill:var(--whatsapp-green); }
+
+.cta-btn:hover{
+    border-color:var(--gold-hover);
+    transform:translateY(-3px);
+    box-shadow:0 6px 20px rgba(245,194,0,0.3);
+}
+
+/* ── SECONDARY CTA ROW ── */
+.hero-secondary-ctas{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:60px;
+}
+
+.btn-book{
+    padding:13px 30px;
+    border-radius:50px;
+    background:var(--gold);
+    border:none;
+    color:#0a1830;
+    font-weight:800;
+    font-size:0.95rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:0.3s ease;
+    box-shadow:0 4px 18px rgba(245,194,0,0.4);
+}
+
+.btn-book svg{ width:18px; height:18px; fill:#0a1830; }
+
+.btn-book:hover{
+    background:var(--gold-hover);
+    transform:translateY(-2px);
+    box-shadow:0 6px 24px rgba(245,194,0,0.5);
+}
+
+.btn-services{
+    padding:13px 30px;
+    border-radius:50px;
+    background:transparent;
+    border:2px solid var(--gold);
+    color:var(--text-light);
+    font-weight:700;
+    font-size:0.95rem;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    cursor:pointer;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    transition:0.3s ease;
+}
+
+.btn-services:hover{
+    background:rgba(245,194,0,0.1);
+    transform:translateY(-2px);
+}
+
+/* ── BOOKING FORM SECTION ── */
+.booking-section{
+    max-width:700px;
+    margin:0 auto 70px;
+    padding:0 20px;
+    display:none; /* shown via JS when button clicked */
+}
+
+.booking-section.open{ display:block; }
+
+.booking-card{
+    background:var(--card-bg);
+    border:1px solid var(--border-gold);
+    border-radius:12px;
+    padding:40px 36px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.4);
+}
+
+.booking-card h3{
+    font-family:'Cinzel',serif;
+    color:var(--gold);
+    font-size:1.6rem;
+    margin-bottom:28px;
+    text-align:center;
+    letter-spacing:1px;
+}
+
+.form-group{
+    margin-bottom:18px;
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.form-group label{
+    font-size:0.82rem;
+    font-weight:700;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gold);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea{
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--border-gold);
+    border-radius:6px;
+    padding:12px 14px;
+    color:var(--text-light);
+    font-size:1rem;
+    font-family:'Inter',sans-serif;
+    width:100%;
+    transition:border-color 0.3s;
+    outline:none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder{ color:rgba(255,255,255,0.3); }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+    border-color:var(--gold);
+    background:rgba(245,194,0,0.05);
+}
+
+.form-group select option{ background:#0a1830; color:white; }
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+}
+
+.form-submit{
+    width:100%;
+    padding:15px;
+    background:var(--gold);
+    border:none;
+    border-radius:8px;
+    color:#0a1830;
+    font-size:1rem;
+    font-weight:800;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    cursor:pointer;
+    margin-top:10px;
+    transition:0.3s;
+}
+
+.form-submit:hover{
+    background:var(--gold-hover);
+    transform:translateY(-2px);
+}
+
+.form-success{
+    display:none;
+    text-align:center;
+    padding:30px;
+}
+
+.form-success svg{ width:56px; height:56px; margin-bottom:16px; }
+.form-success h4{ font-family:'Cinzel',serif; font-size:1.4rem; color:var(--gold); margin-bottom:10px; }
+.form-success p{ color:var(--text-muted); font-size:1rem; }
+
+
+.features-section{
+    max-width:1100px;
+    margin:0 auto 70px;
+    padding:0 20px;
+}
+
+.features-section h2{
+    font-family:'Cinzel',serif;
+    text-align:center;
+    color:var(--gold);
+    font-size:2.3rem;
+    margin-bottom:35px;
+    letter-spacing:2px;
+    font-weight:700;
+}
+
+.features-row{
+    display:flex;
+    flex-direction:row;
+    gap:14px;
+    align-items:stretch;
+}
+
+.feature-card{
+    flex:1;
+    background:var(--card-bg);
+    border:1px solid var(--border-gold);
+    border-radius:8px;
+    padding:28px 16px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    transition:transform 0.3s ease, border-color 0.3s ease;
+    min-width:0;
+}
+
+.feature-card:hover{
+    border-color:var(--gold);
+    transform:translateY(-4px);
+    box-shadow:0 8px 24px rgba(245,194,0,0.2);
+}
+
+.feature-card svg{
+    width:44px;
+    height:44px;
+    flex-shrink:0;
+}
+
+/* Zooming car animation for mobile notary */
+.feature-card.mobile-notary svg{
+    animation: zoom-right 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes zoom-right{
+    0%  { transform: translateX(-6px) scale(0.95); }
+    100%{ transform: translateX(6px)  scale(1.05); }
+}
+
+.feature-label{
+    font-size:0.85rem;
+    font-weight:700;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    line-height:1.3;
+    color:var(--text-light);
+}
+
+/* ── SERVICE AREAS STRIP ── */
+.regions-strip{
+    background:rgba(5,14,31,0.92);
+    border-top:2px solid var(--gold);
+    border-bottom:2px solid var(--gold);
+    width:100%;
+    margin:0 0 65px;
+    padding:36px 20px;
+    text-align:center;
+}
+
+.regions-inner{
+    max-width:1100px;
+    margin:auto;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+}
+
+.regions-label{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-family:'Cinzel',serif;
+    font-size:1.45rem;
+    font-weight:700;
+    color:var(--gold);
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.regions-label svg{
+    width:30px;
+    height:30px;
+    flex-shrink:0;
+}
+
+.regions-counties{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:center;
+    gap:0;
+}
+
+.county-item{
+    font-size:1.25rem;
+    font-weight:600;
+    color:var(--text-light);
+    letter-spacing:0.5px;
+    padding:0 28px;
+    position:relative;
+    line-height:1.5;
+}
+
+.county-item:not(:last-child)::after{
+    content:"|";
+    position:absolute;
+    right:0;
+    top:0;
+    color:var(--gold);
+    font-weight:300;
+    opacity:0.6;
+}
+
+/* ── SERVICES ── */
+.services-section{
+    max-width:1100px;
+    margin:auto;
+    padding:50px 20px 70px;
+}
+
+.services-section h2{
+    text-align:center;
+    font-family:'Cinzel',serif;
+    font-size:2.2rem;
+    margin-bottom:45px;
+}
+
+.services-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+}
+
+.services-column{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+details{
+    background:var(--card-bg);
+    border:1px solid var(--border-gold);
+    border-radius:8px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+details[open]{
+    border-color:var(--gold);
+    background:rgba(18,44,88,0.95);
+}
+
+summary{
+    padding:18px 22px;
+    font-size:1.05rem;
+    font-weight:700;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    list-style:none;
+    gap:10px;
+}
+
+.sum-icon{
+    width:22px;
+    height:22px;
+    flex-shrink:0;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.sum-text{ flex:1; }
+
+summary::-webkit-details-marker{ display:none; }
+summary::after{ content:'+'; font-size:1.4rem; color:var(--gold); flex-shrink:0; }
+details[open] summary::after{ content:'−'; }
+
+.details-content{
+    padding:18px 22px 22px;
+    border-top:1px solid rgba(245,194,0,0.1);
+    color:var(--text-muted);
+    font-size:1rem;
+    line-height:1.75;
+}
+
+/* ── FOOTER ── */
+footer{
+    background:#050e1f;
+    border-top:2px solid var(--gold);
+    padding:35px 20px;
+    text-align:center;
+}
+
+.sos-disclaimer{
+    max-width:850px;
+    margin:auto;
+    color:var(--text-muted);
+    font-size:0.85rem;
+    line-height:1.7;
+}
+
+.sos-disclaimer strong{
+    display:block;
+    margin-bottom:8px;
+    color:var(--gold);
+    font-family:'Cinzel',serif;
+    letter-spacing:1px;
+}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+    .hero h1{ font-size:2.4rem; }
+    .services-columns{ grid-template-columns:1fr; }
+}
+
+@media(max-width:900px){
+    .features-row{ flex-wrap:wrap; }
+    .feature-card{ flex:1 1 calc(50% - 14px); }
+}
+
+@media(max-width:768px){
+    .nav-container{ flex-direction:column; gap:14px; }
+    .hero-header-block{
+        flex-direction:column;
+        gap:16px;
+    }
+    .hero h1{ font-size:1.75rem; text-align:center; }
+    .hero .hero-logo-main{ height:110px; }
+    .features-section h2{ font-size:1.7rem; }
+    .features-row{ flex-wrap:wrap; }
+    .feature-card{ flex:1 1 calc(50% - 14px); padding:20px 10px; }
+    .feature-label{ font-size:0.75rem; }
+    .logo-text-main{ font-size:1rem; }
+    .logo-subtitle{ font-size:0.62rem; }
+    .regions-label{ font-size:1.1rem; }
+    .county-item{ font-size:1rem; padding:0 16px; }
+}
+
+@media(max-width:480px){
+    .feature-card{ flex:1 1 100%; }
+    .form-row{ grid-template-columns:1fr; }
+    .booking-card{ padding:28px 18px; }
+    .hero-secondary-ctas{ flex-direction:column; align-items:center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+    <div class="nav-container">
+        <div class="logo-area">
+            <!-- Small logo in nav bar -->
+            <img src="star_logo.png" alt="Lone Star QuickSign Logo" class="nav-logo">
+            <div>
+                <div class="logo-text-main">LONE STAR QUICKSIGN XPRESS</div>
+                <div class="logo-subtitle">MOBILE &amp; ONLINE NOTARY SERVICES</div>
+            </div>
+        </div>
+        <ul class="nav-menu">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- ── HERO ── -->
+<section class="hero" id="about">
+
+    <!-- Logo centered above title -->
+    <div class="hero-header-block">
+        <img src="star_logo.png" alt="Lone Star QuickSign Emblem" class="hero-logo-main">
+        <h1>LONE STAR QUICKSIGN<br>XPRESS NOTARY</h1>
+    </div>
+
+    <p class="hero-subtitle">AUTHORIZED IN TEXAS &middot; SERVING CLIENTS WORLDWIDE</p>
+
+    <!-- Contact buttons -->
+    <div class="hero-ctas" id="contact">
+        <a href="sms:+19152581693" class="cta-btn btn-text">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+            TEXT
+        </a>
+        <a href="https://wa.me/19152581693" target="_blank" class="cta-btn btn-whatsapp">
+            <svg viewBox="0 0 24 24"><path d="M12.012 2c-5.508 0-9.988 4.479-9.988 9.987 0 1.763.459 3.418 1.261 4.865l-1.285 4.693 4.805-1.258c1.399.763 2.993 1.199 4.686 1.199 5.507 0 9.987-4.479 9.987-9.987 0-5.508-4.48-9.987-9.987-9.987zm4.981 14.113c-.225.632-1.304 1.189-1.79 1.239-.441.044-.997.067-2.613-.594-2.066-.845-3.393-2.951-3.496-3.088-.103-.138-.838-1.113-.838-2.122 0-1.009.527-1.503.714-1.706.188-.204.412-.254.55-.254.138 0 .275.002.395.008.125.006.292-.047.457.348.169.406.579 1.413.629 1.514.051.102.084.219.016.356-.069.137-.103.222-.206.342-.103.12-.216.27-.309.362-.103.102-.211.213-.092.418.12.204.531.876 1.139 1.417.785.699 1.445.914 1.651 1.018.206.102.327.086.447-.052.12-.138.514-.598.652-.803.138-.204.275-.172.463-.102.188.069 1.199.564 1.405.667.206.102.343.153.394.242.052.088.052.512-.173 1.144z"/></svg>
+            WHATSAPP
+        </a>
+        <a href="mailto:quicksignxpress@gmail.com" class="cta-btn btn-email">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            EMAIL
+        </a>
+    </div>
+
+    <!-- Book + View Services -->
+    <div class="hero-secondary-ctas">
+        <a href="#booking" class="btn-book" onclick="openBooking(event)">
+            <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.89 3 3 3.9 3 5v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V9h14v10zm0-12H5V5h14v2zM7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
+            Book an Appointment
+        </a>
+        <a href="#services" class="btn-services">
+            View All Services
+        </a>
+    </div>
+</section>
+
+<!-- ── BOOKING FORM ── -->
+<div class="booking-section" id="booking">
+    <div class="booking-card">
+        <!-- Success state (hidden until submitted) -->
+        <div class="form-success" id="formSuccess">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="9,12 11,14 15,10"/>
+            </svg>
+            <h4>Appointment Request Sent!</h4>
+            <p>Thank you! We will contact you within 24 hours to confirm your appointment.</p>
+        </div>
+
+        <!-- Form -->
+        <div id="bookingForm">
+            <h3>📅 Book an Appointment</h3>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="fname">First Name *</label>
+                    <input type="text" id="fname" placeholder="Jane" required>
+                </div>
+                <div class="form-group">
+                    <label for="lname">Last Name *</label>
+                    <input type="text" id="lname" placeholder="Doe" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" placeholder="(915) 000-0000" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="jane@email.com">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="service">Service Needed *</label>
+                <select id="service" required>
+                    <option value="" disabled selected>Select a service...</option>
+                    <option>Loan &amp; Real Estate Closing</option>
+                    <option>Powers of Attorney / Will / Living Trust</option>
+                    <option>Jurat &amp; Acknowledgment</option>
+                    <option>Affidavit &amp; Sworn Statement</option>
+                    <option>Deed &amp; Property Document</option>
+                    <option>School &amp; Adoption Records</option>
+                    <option>Mobile / Virtual Signing</option>
+                    <option>Witness Service</option>
+                    <option>Business Contract</option>
+                    <option>Medical Directive &amp; Release</option>
+                    <option>Apostille Service</option>
+                    <option>Travel Permission &amp; Minor Consent</option>
+                    <option>Other</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="appt-date">Preferred Date *</label>
+                    <input type="date" id="appt-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="appt-time">Preferred Time</label>
+                    <input type="time" id="appt-time">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Your Location / Address</label>
+                <input type="text" id="location" placeholder="City, TX or full address">
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Additional Notes</label>
+                <textarea id="notes" rows="3" placeholder="Any extra details about your signing..."></textarea>
+            </div>
+
+            <button class="form-submit" onclick="submitBooking()">Send Appointment Request</button>
+            <p style="text-align:center;margin-top:14px;font-size:0.82rem;color:var(--text-muted);">
+                We'll confirm via text or email within 24 hours.
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!-- ── FEATURES: 4 cards in one row ── -->
+<section class="features-section">
+    <h2>Our Available Features</h2>
+    <div class="features-row">
+
+        <!-- Remote / Online — monitor -->
+        <div class="feature-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="13" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <span class="feature-label">Remote / Online</span>
+        </div>
+
+        <!-- Mobile Notary — ZOOMING CAR (notary travels to you) -->
+        <div class="feature-card mobile-notary">
+            <svg viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Speed lines behind car -->
+                <line x1="2"  y1="14" x2="14" y2="14" stroke="#f5c200" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
+                <line x1="2"  y1="18" x2="12" y2="18" stroke="#f5c200" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
+                <line x1="4"  y1="22" x2="13" y2="22" stroke="#f5c200" stroke-width="1"   stroke-linecap="round" opacity="0.25"/>
+                <!-- Car body -->
+                <rect x="16" y="16" width="36" height="10" rx="3" fill="#f5c200"/>
+                <!-- Cabin / roof -->
+                <path d="M22 16 L26 8 L44 8 L48 16 Z" fill="#f5c200"/>
+                <!-- Windows -->
+                <rect x="27" y="9.5" width="7"  height="5" rx="1" fill="#0a1830" opacity="0.7"/>
+                <rect x="36" y="9.5" width="7"  height="5" rx="1" fill="#0a1830" opacity="0.7"/>
+                <!-- Wheels -->
+                <circle cx="24" cy="26" r="4" fill="#0a1830" stroke="#f5c200" stroke-width="1.5"/>
+                <circle cx="44" cy="26" r="4" fill="#0a1830" stroke="#f5c200" stroke-width="1.5"/>
+                <circle cx="24" cy="26" r="1.5" fill="#f5c200"/>
+                <circle cx="44" cy="26" r="1.5" fill="#f5c200"/>
+                <!-- Headlight -->
+                <rect x="51" y="18" width="4" height="3" rx="1" fill="#ffd633"/>
+                <!-- Door line -->
+                <line x1="35" y1="16" x2="35" y2="26" stroke="#0b1c3a" stroke-width="1" opacity="0.5"/>
+            </svg>
+            <span class="feature-label">Mobile Notary</span>
+        </div>
+
+        <!-- In-Person Signing — pen on paper -->
+        <div class="feature-card">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+            </svg>
+            <span class="feature-label">In-Person Signing</span>
+        </div>
+
+        <!-- Same-Day / Emergency — lightning bolt -->
+        <div class="feature-card">
+            <svg viewBox="0 0 24 24" fill="#f5c200">
+                <path d="M13 2L4.5 13.5H11L10 22l9.5-12H14z"/>
+            </svg>
+            <span class="feature-label">Same-Day / Emergency</span>
+        </div>
+
+    </div>
+</section>
+
+<!-- ── SERVICE AREAS ── -->
+<div class="regions-strip">
+    <div class="regions-inner">
+        <div class="regions-label">
+            <!-- SVG map drop-pin, no emoji -->
+            <svg viewBox="0 0 24 24" fill="#f5c200" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
+            </svg>
+            In-Person Service Areas
+        </div>
+        <div class="regions-counties">
+            <span class="county-item">Collin County</span>
+            <span class="county-item">Dallas County</span>
+            <span class="county-item">Denton County</span>
+            <span class="county-item">Grayson County</span>
+        </div>
+    </div>
+</div>
+
+<!-- ── SERVICES ── -->
+<section class="services-section" id="services">
+    <h2>Our Specialized Services</h2>
+    <div class="services-columns">
+        <div class="services-column">
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                            <polyline points="9,22 9,12 15,12 15,22"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Loan &amp; Real Estate Closings</span>
+                </summary>
+                <div class="details-content">Purchase agreements, refinances, deeds of trust, and full loan closing packages managed by a Certified Loan Signing Agent.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Powers of Attorney, Wills &amp; Living Trusts</span>
+                </summary>
+                <div class="details-content">Estate planning directives executed with confidentiality, identity verification, and professional care.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14,2 14,8 20,8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Jurats &amp; Acknowledgments</span>
+                </summary>
+                <div class="details-content">Legal identity verification, formal acknowledgments, and sworn signature execution services.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Affidavits &amp; Sworn Statements</span>
+                </summary>
+                <div class="details-content">Sworn declarations and affidavits prepared for legal, immigration, and official documentation.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Deeds &amp; Property Documents</span>
+                </summary>
+                <div class="details-content">Quitclaim deeds, warranty deeds, title transfers, and property documentation support.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                            <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">School &amp; Adoption Records</span>
+                </summary>
+                <div class="details-content">Academic certifications, transcripts, enrollment forms, and adoption paperwork notarization.</div>
+            </details>
+
+        </div>
+        <div class="services-column">
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <!-- Car icon for mobile/virtual — notary comes to you -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h13l4 4v4a2 2 0 0 1-2 2h-1"/>
+                            <circle cx="7"  cy="17" r="2"/>
+                            <circle cx="17" cy="17" r="2"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Mobile &amp; Virtual Signings</span>
+                </summary>
+                <div class="details-content">Your certified notary travels to your location — home, office, hospital, or anywhere you need. Secure Remote Online Notarization also available for clients worldwide.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                            <circle cx="9" cy="7" r="4"/>
+                            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Witness Services</span>
+                </summary>
+                <div class="details-content">Certified witness services for contracts, wills, affidavits, and formal agreements.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <rect x="2" y="7" width="20" height="14" rx="2"/>
+                            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Business Contracts &amp; Agreements</span>
+                </summary>
+                <div class="details-content">Corporate agreements, NDAs, employment forms, and commercial business documents.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Medical Directives &amp; Releases</span>
+                </summary>
+                <div class="details-content">HIPAA releases, medical directives, living wills, and hospital bedside notarization.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <circle cx="12" cy="12" r="10"/>
+                            <line x1="2" y1="12" x2="22" y2="12"/>
+                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Apostille Services</span>
+                </summary>
+                <div class="details-content">Document authentication guidance for international and Texas Secretary of State submissions.</div>
+            </details>
+
+            <details>
+                <summary>
+                    <span class="sum-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="M2 9.5h20"/>
+                            <path d="M7 15h0M12 15h0"/>
+                        </svg>
+                    </span>
+                    <span class="sum-text">Travel Permissions &amp; Minor Consent</span>
+                </summary>
+                <div class="details-content">Parental consent forms, travel authorizations, and passport-related notarized documents.</div>
+            </details>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="sos-disclaimer">
+        <strong>Notice Regarding Legal Advice &amp; Services</strong>
+        I am not an attorney licensed to practice law in this state. I am not allowed to draft legal documents, give advice on legal matters, including immigration, or charge a fee for those activities.
+    </div>
+</footer>
+
+<script>
+function openBooking(e){
+    e.preventDefault();
+    const section = document.getElementById('booking');
+    section.classList.add('open');
+    setTimeout(()=>{ section.scrollIntoView({behavior:'smooth', block:'start'}); }, 50);
+}
+
+function submitBooking(){
+    const fname    = document.getElementById('fname').value.trim();
+    const lname    = document.getElementById('lname').value.trim();
+    const phone    = document.getElementById('phone').value.trim();
+    const service  = document.getElementById('service').value;
+    const date     = document.getElementById('appt-date').value;
+
+    if(!fname || !lname || !phone || !service || !date){
+        alert('Please fill in all required fields (marked with *).');
+        return;
+    }
+
+    // Build a mailto link so the request goes straight to the notary's email
+    const email    = document.getElementById('email').value.trim();
+    const time     = document.getElementById('appt-time').value;
+    const location = document.getElementById('location').value.trim();
+    const notes    = document.getElementById('notes').value.trim();
+
+    const subject  = encodeURIComponent('Appointment Request – ' + fname + ' ' + lname);
+    const body     = encodeURIComponent(
+        'Name: '     + fname + ' ' + lname + '\n' +
+        'Phone: '    + phone + '\n' +
+        'Email: '    + (email   || 'Not provided') + '\n' +
+        'Service: '  + service  + '\n' +
+        'Date: '     + date     + '\n' +
+        'Time: '     + (time    || 'Flexible') + '\n' +
+        'Location: ' + (location|| 'Not provided') + '\n' +
+        'Notes: '    + (notes   || 'None') + '\n'
+    );
+
+    // Open the email client with pre-filled appointment details
+    window.location.href = 'mailto:quicksignxpress@gmail.com?subject=' + subject + '&body=' + body;
+
+    // Show success message
+    document.getElementById('bookingForm').style.display = 'none';
+    const s = document.getElementById('formSuccess');
+    s.style.display = 'block';
+
+    // Also send a WhatsApp notification as backup
+    const wa = 'https://wa.me/19152581693?text=' +
+        encodeURIComponent(
+            '📅 *New Appointment Request*\n' +
+            'Name: '    + fname + ' ' + lname + '\n' +
+            'Phone: '   + phone + '\n' +
+            'Service: ' + service + '\n' +
+            'Date: '    + date + '\n' +
+            'Time: '    + (time || 'Flexible') + '\n' +
+            'Location: '+ (location || 'Not provided')
+        );
+
+    // Open WhatsApp in a new tab after a short delay
+    setTimeout(()=>{ window.open(wa, '_blank'); }, 800);
+}
+</script>
+
+</body>
+</html>
