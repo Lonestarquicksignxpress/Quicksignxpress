@@ -1,11 +1,14 @@
-The logo has a deep navy blue (`#0d2060` range) and a vivid golden yellow (`#f5c200` range). I'll update the color palette to match those exactly, and bump the hero logo up significantly.Now update the nav logo size and the watermark filter color, and update the feature card SVG stroke colors and the car animation to use the new gold:Now update all the inline SVG stroke/fill colors from `#d6af53` to `#f5c200` — that's the old gold used in feature cards and service icons:Also update the mobile-notary car animation glow and the border-gold rgba values that were hardcoded:All good. Let me also update the mobile responsive logo height to scale from 190px:Here's what was updated:
+Clear instructions. Let me make these targeted changes to the existing file.Now I'll make all five targeted changes with precision.Now update the mobile responsive block to also center on mobile:Now update the hero HTML — remove watermark, fix title to 2 lines, center the wrapper:Now update the About bio — remove "newly commissioned", rewrite professionally:Now update the cert chips — remove the ✅ emoji (the `::before` CSS now handles the green check):All changes are in. Here's exactly what was updated:
 
-**Logo size** — hero logo bumped from 130px → **190px** tall, with a stronger golden glow `drop-shadow` underneath it. Nav bar logo also slightly enlarged to 52px.
+---
 
-**Color palette matched to your logo:**
-- Old muted gold `#d6af53` → **`#f5c200`** — the vivid golden-yellow of the arrow in your logo
-- Hover gold → `#ffd633` (brighter variant of same)
-- Background navy → **`#0a1830`** — matched to the deep navy of the star body
-- All SVG icon strokes, borders, accents, and the car animation now use this same gold throughout
+### ✅ Changes Applied
 
-Every single color reference — CSS variables, inline SVG strokes, rgba shadows, car headlight, feature card borders — has been updated to be consistent with your actual logo colors.
+| Item | What Changed |
+|---|---|
+| **Title — 2 lines** | "Lone Star Quicksign" on line 1 / "Xpress Notary" on line 2 — exactly matching Image 2 |
+| **Logo size** | 1.75× bigger — `min(100px)` → `min(175px)` — prominent in the hero |
+| **Hero alignment** | Fully centered — logo + title block, slogan, buttons all centered (matching Image 2) |
+| **Watermark removed** | `shopping.webp` watermark completely removed from the hero section |
+| **About bio** | "Newly commissioned" removed — now reads *"I am a commissioned Texas Notary Public, dedicated to providing reliable, accurate, and confidential notary services…"* |
+| **Green checkmarks** | Cert chips now show a CSS `✓` in **#1a7a4a green** via `::before` — consistent, always rendered, not dependent on emoji rendering |
