@@ -41,13 +41,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 85vmin;
-            height: 85vmin;
+            width: 80vmin;
+            height: 80vmin;
             background-image: url('star_logo.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            opacity: 0.05; /* Subtly embedded into the backdrop as requested */
+            opacity: 0.04; /* Subtly embedded into the backdrop */
             pointer-events: none;
             z-index: -1;
         }
@@ -125,16 +125,6 @@
             color: var(--text-light);
             margin-bottom: 10px;
             text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .hero h1 img {
-            height: 65px;
-            width: auto;
         }
 
         .hero-subtitle {
@@ -186,9 +176,9 @@
             box-shadow: 0 6px 20px rgba(214, 175, 83, 0.4);
         }
 
-        /* VERTICAL FEATURES OVERVIEW STYLING MATCHING REFERENCED SCREENSHOT */
+        /* 4-COLUMN HORIZONTAL FEATURE OVERVIEW GRID */
         .features-section {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto 60px;
             padding: 0 20px;
         }
@@ -196,45 +186,28 @@
         .features-section h2 {
             font-family: 'Cinzel', serif;
             text-align: center;
-            font-size: 2.2rem;
-            color: var(--gold);
-            margin-bottom: 35px;
-            letter-spacing: 1.5px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .features-section h2 img {
-            height: 50px;
-            width: auto;
-        }
-
-        .features-column-layout {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-            border-top: 1px solid rgba(214, 175, 83, 0.3);
-            border-bottom: 1px solid rgba(214, 175, 83, 0.3);
-        }
-
-        .feature-item-row {
-            padding: 28px 20px;
-            text-align: center;
             font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            border-bottom: 1px solid rgba(214, 175, 83, 0.2);
+            color: var(--gold);
+            margin-bottom: 25px;
+            letter-spacing: 1.5px;
         }
 
-        .feature-item-row:last-child {
-            border-bottom: none;
+        .features-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(15,37,75,0.9) 0%, rgba(10,24,49,0.9) 100%);
+            border: 1px solid var(--border-gold);
+            border-radius: 6px;
+            padding: 22px 15px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
         }
 
         /* TWO-COLUMN ACCORDION COMPONENT WITH CLEAN DESCRIPTIONS */
@@ -364,6 +337,7 @@
         /* DESIGN BREAKPOINTS FOR RESPONSIVENESS */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 2.6rem; }
+            .features-row { grid-template-columns: repeat(2, 1fr); }
             .services-columns { grid-template-columns: 1fr; }
         }
 
@@ -371,13 +345,13 @@
             .nav-container { flex-direction: column; gap: 15px; }
             .nav-menu { gap: 25px; }
             .hero h1 { font-size: 2rem; }
-            .features-section h2 { font-size: 1.6rem; }
-            .feature-item-row { font-size: 1.1rem; padding: 20px 15px; }
+            .features-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- STYLISH HEADER NAVIGATION -->
     <header>
         <div class="nav-container">
             <div class="logo-area">
@@ -392,22 +366,24 @@
         </div>
     </header>
 
+    <!-- HERO CORE BANNER SEGMENT -->
     <section class="hero" id="about">
-        <h1>
-            <img src="star_logo.png" alt="Star Logo Badge">
-            LONE STAR QUICKSIGN XPRESS NOTARY
-        </h1>
+        <h1>LONE STAR QUICKSIGN XPRESS NOTARY</h1>
         <p class="hero-subtitle">AUTHORIZED IN TEXAS · SERVING CLIENTS WORLDWIDE</p>
         
+        <!-- EMBEDDED CONTACT CHANNELS -->
         <div class="hero-ctas" id="contact">
+            <!-- SMS Text Trigger Protocol -->
             <a href="sms:+19152581693" class="cta-btn">
                 <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
                 Text Now
             </a>
+            <!-- WhatsApp Communication Link -->
             <a href="https://wa.me/19152581693" target="_blank" class="cta-btn">
                 <svg viewBox="0 0 24 24"><path d="M12.012 2c-5.508 0-9.988 4.479-9.988 9.987 0 1.763.459 3.418 1.261 4.865l-1.285 4.693 4.805-1.258c1.399.763 2.993 1.199 4.686 1.199 5.507 0 9.987-4.479 9.987-9.987 0-5.508-4.48-9.987-9.987-9.987zm4.981 14.113c-.225.632-1.304 1.189-1.79 1.239-.441.044-.997.067-2.613-.594-2.066-.845-3.393-2.951-3.496-3.088-.103-.138-.838-1.113-.838-2.122 0-1.009.527-1.503.714-1.706.188-.204.412-.254.55-.254.138 0 .275.002.395.008.125.006.292-.047.457.348.169.406.579 1.413.629 1.514.051.102.084.219.016.356-.069.137-.103.222-.206.342-.103.12-.216.27-.309.362-.103.102-.211.213-.092.418.12.204.531.876 1.139 1.417.785.699 1.445.914 1.651 1.018.206.102.327.086.447-.052.12-.138.514-.598.652-.803.138-.204.275-.172.463-.102.188.069 1.199.564 1.405.667.206.102.343.153.394.242.052.088.052.512-.173 1.144z"/></svg>
                 WhatsApp
             </a>
+            <!-- Safe Inbound Mail Transfer Link -->
             <a href="mailto:quicksignxpress@gmail.com" class="cta-btn">
                 <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 Email Inbox
@@ -415,27 +391,28 @@
         </div>
     </section>
 
+    <!-- INLINE OVERVIEW FLOW -->
     <section class="features-section">
-        <h2>
-            <img src="star_logo.png" alt="Star Emblem">
-            Our Available Features
-        </h2>
-        <div class="features-column-layout">
-            <div class="feature-item-row">💻 Remote / Online</div>
-            <div class="feature-item-row">🚗 Mobile Notary</div>
-            <div class="feature-item-row">📍 In-Person Signing</div>
-            <div class="feature-item-row">⚡ Same-Day / Emergency</div>
+        <h2>Our Available Formats & Features</h2>
+        <div class="features-row">
+            <div class="feature-card">💻 Remote / Online</div>
+            <div class="feature-card">🚗 Mobile Dispatch</div>
+            <div class="feature-card">📍 In-Person Signing</div>
+            <div class="feature-card">⚡ Same-Day / Emergency</div>
         </div>
     </section>
 
+    <!-- GEOGRAPHIC DISPATCH BOUNDS STRIP -->
     <div class="regions-strip">
         📍 <strong>In-Person Service Areas:</strong> Collin County | Dallas County | Denton County | Grayson County
     </div>
 
+    <!-- 2-COLUMN CLASSIFIED EXPANDABLE ACCORDION INTERFACE -->
     <section class="services-section" id="services">
         <h2>Our Specialized Services</h2>
         
         <div class="services-columns">
+            <!-- Left Grid Layout Pillar -->
             <div class="services-column">
                 <details>
                     <summary>🏠 Loan & Real Estate Closings</summary>
@@ -480,6 +457,7 @@
                 </details>
             </div>
 
+            <!-- Right Grid Layout Pillar -->
             <div class="services-column">
                 <details>
                     <summary>📶 Mobile & Virtual Signings</summary>
@@ -526,6 +504,7 @@
         </div>
     </section>
 
+    <!-- STATE COMPLIANCE LEGAL DISCLAIMER FOOTER -->
     <footer>
         <div class="sos-disclaimer">
             <strong>Notice Regarding Legal Advice & Services</strong>
