@@ -1,103 +1,95 @@
-Here is the complete, raw HTML code exactly as it was provided before:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Your Clean Logo Asset</title>
+    <title>Lone Star QuickSign Xpress Notary Directory</title>
     <style>
+        :root {
+            --bg-dark: #0b1526;
+            --card-bg: #122240;
+            --gold: #d4af37;
+            --text-main: #ffffff;
+            --text-sub: #9fb1cc;
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0b1526;
-            color: #ffffff;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             display: flex;
-            flex-direction: column;
-            align-items: center;
             justify-content: center;
+            align-items: center;
             min-height: 100vh;
             margin: 0;
             padding: 20px;
         }
-        .container {
-            background-color: #122240;
-            border: 2px solid #d4af37;
-            border-radius: 12px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
-            max-width: 500px;
+
+        .directory-container {
+            background-color: var(--card-bg);
+            border: 2px solid var(--gold);
+            border-radius: 24px;
+            padding: 30px 24px;
+            max-width: 450px;
             width: 100%;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            box-sizing: border-box;
         }
-        h1 {
-            color: #d4af37;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-        p {
-            color: #9fb1cc;
-            font-size: 0.95rem;
+
+        /* Header Section */
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 30px;
         }
-        .preview-box {
-            background-color: #0b1526;
-            background-image: linear-gradient(45deg, #0f1c34 25%, transparent 25%), 
-                              linear-gradient(-45deg, #0f1c34 25%, transparent 25%), 
-                              linear-gradient(45deg, transparent 75%, #0f1c34 75%), 
-                              linear-gradient(-45deg, transparent 75%, #0f1c34 75%);
-            background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 30px;
+
+        .logo-wrapper {
+            width: 60px;
+            height: 60px;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            background-color: var(--bg-dark);
         }
-        .preview-box img {
-            max-width: 100%;
-            height: 220px;
-            object-fit: contain;
+
+        .logo-star {
+            color: var(--gold);
+            font-size: 2rem;
         }
-        .download-btn {
-            background-color: #d4af37;
-            color: #122240;
-            text-decoration: none;
-            padding: 14px 32px;
-            font-weight: 700;
-            font-size: 1rem;
-            border-radius: 6px;
+
+        .title-area h1 {
+            color: var(--text-main);
+            font-size: 1.25rem;
+            margin: 0;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            letter-spacing: 0.5px;
         }
-        .download-btn:hover {
-            background-color: #f3e5ab;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
+
+        .title-area p {
+            color: var(--gold);
+            font-size: 0.75rem;
+            margin: 5px 0 0 0;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
-    </style>
-</head>
-<body>
 
-    <div class="container">
-        <h1>Transparent Logo Asset</h1>
-        <p>Your transparent blue and gold logo is prepared for download. This version is free of the black background remnants and ready to drop directly into your GitHub repository folder map.</p>
-        
-        <div class="preview-box">
-            <img src="https://ibb.co" alt="Cleaned Logo Preview">
-        </div>
+        /* Communication & Info Action Links */
+        .action-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s ease, background 0.2s ease;
+        }
 
-        <a href="https://ibb.co" download="star_logo.png" target="_blank" class="download-btn">
-            Download PNG File
-        </a>
-    </div>
-
-</body>
-</html>
-
-```
+        .action-card
