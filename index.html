@@ -125,9 +125,12 @@ header{
     margin:auto;
     padding:70px 20px 40px;
     text-align:center;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-/* Logo LEFT of title — horizontal row */
+/* Logo + title — centered horizontal row */
 .hero-header-block{
     display:flex;
     flex-direction:row;
@@ -135,6 +138,7 @@ header{
     justify-content:center;
     gap:28px;
     margin-bottom:24px;
+    text-align:center;
 }
 
 /* Big logo to the left */
@@ -153,7 +157,7 @@ header{
     letter-spacing:1px;
     text-shadow:0 2px 10px rgba(0,0,0,0.6);
     line-height:1.15;
-    text-align:center;
+    text-align:left;
 }
 
 .hero-subtitle{
@@ -1071,7 +1075,6 @@ function submitBooking(){
         return;
     }
 
-    // Build a mailto link so the request goes straight to the notary's email
     const email    = document.getElementById('email').value.trim();
     const time     = document.getElementById('appt-time').value;
     const location = document.getElementById('location').value.trim();
@@ -1089,15 +1092,17 @@ function submitBooking(){
         'Notes: '    + (notes   || 'None') + '\n'
     );
 
-    // Open the email client with pre-filled appointment details
-    window.location.href = 'mailto:quicksignxpress@gmail.com?subject=' + subject + '&body=' + body;
+    // Open email client in new tab so page stays put
+    window.open('mailto:quicksignxpress@gmail.com?subject=' + subject + '&body=' + body, '_self');
 
-    // Show success message
+    // Show success message immediately
     document.getElementById('bookingForm').style.display = 'none';
     const s = document.getElementById('formSuccess');
-    s.style.display = 'block';
+    s.style.display    = 'flex';
+    s.style.flexDirection = 'column';
+    s.style.alignItems = 'center';
 
-    // Also send a WhatsApp notification as backup
+    // WhatsApp backup notification in a new tab after short delay
     const wa = 'https://wa.me/19152581693?text=' +
         encodeURIComponent(
             '📅 *New Appointment Request*\n' +
@@ -1108,9 +1113,7 @@ function submitBooking(){
             'Time: '    + (time || 'Flexible') + '\n' +
             'Location: '+ (location || 'Not provided')
         );
-
-    // Open WhatsApp in a new tab after a short delay
-    setTimeout(()=>{ window.open(wa, '_blank'); }, 800);
+    setTimeout(()=>{ window.open(wa, '_blank'); }, 1200);
 }
 </script>
 
