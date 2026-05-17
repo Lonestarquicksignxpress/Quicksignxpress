@@ -34,27 +34,25 @@
             overflow-x: hidden;
         }
 
-        /* WATERMARK BACKGROUND EFFECT (Matches blue and gold theme with opacity) */
+        /* WATERMARK BACKGROUND EFFECT (Using your single watermark file) */
         body::before {
             content: "";
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 85vmin;
-            height: 85vmin;
-            background-image: url('https://githubusercontent.com'), url('star_logo.png');
+            width: 75vmin;
+            height: 75vmin;
+            background-image: url('watermark.png');
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
-            /* Applies CSS matrix shifts to turn the background image orange into premium gold-yellow */
-            filter: hue-rotate(345deg) saturate(1.2) brightness(0.95) contrast(1.05);
-            opacity: 0.05; 
+            opacity: 0.15; /* Perfectly balanced visibility */
             pointer-events: none;
             z-index: -1;
         }
 
-        /* NAVIGATION BAR DESIGN WITH INLINE LOGO POSITIONING */
+        /* NAVIGATION BAR */
         header {
             border-bottom: 2px solid var(--gold);
             background-color: rgba(18, 34, 64, 0.96);
@@ -85,12 +83,12 @@
             letter-spacing: 1px;
         }
 
-        /* LOGO TINT FILTER (Converts raw image file color accents directly to gold-yellow) */
+        /* LOGO STYLING (For nav header) */
         .logo-img {
-            height: 48px;
+            height: 44px;
             width: auto;
             object-fit: contain;
-            filter: hue-rotate(345deg) saturate(1.3) brightness(1.05) drop-shadow(0px 2px 6px rgba(0,0,0,0.4));
+            filter: drop-shadow(0px 2px 6px rgba(0,0,0,0.4));
         }
 
         .nav-menu {
@@ -116,9 +114,21 @@
         /* MAIN HERO FRAMEWORK */
         .hero {
             text-align: center;
-            padding: 90px 20px 40px;
+            padding: 70px 20px 40px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        /* HERO STAR LOGO STYLING */
+        .hero-logo-container {
+            margin-bottom: 25px;
+        }
+
+        .hero-logo {
+            height: 140px; /* Bigger, clear presentation above the title */
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.5));
         }
 
         .hero h1 {
@@ -141,7 +151,7 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* BRANDED INTERACTIVE CTAS (With Embedded SVG Icons) */
+        /* INTERACTIVE CTAS WITH OFFICIAL BRAND LOGOS */
         .hero-ctas {
             display: flex;
             justify-content: center;
@@ -235,7 +245,7 @@
             color: var(--gold);
         }
 
-        /* TWO-COLUMN ACCORDION INTERFACE COMPONENT */
+        /* TWO-COLUMN CLASSIFIED ACCORDION INTERFACE */
         .services-section {
             max-width: 1100px;
             margin: 0 auto 70px;
@@ -362,7 +372,8 @@
     <header>
         <div class="nav-container">
             <div class="logo-area">
-                <img src="https://githubusercontent.com" onerror="this.src='star_logo.png'" alt="Logo" class="logo-img">
+                <!-- 1. Star logo placed cleanly in front of the navigation branding name -->
+                <img src="star_logo.png" alt="Lone Star Quicksign Logo" class="logo-img">
                 LONE STAR QUICKSIGN XPRESS NOTARY
             </div>
             <ul class="nav-menu">
@@ -373,8 +384,13 @@
         </div>
     </header>
 
-    <!-- HERO CORE HEADER AREA -->
+    <!-- HERO HEADER AREA -->
     <section class="hero" id="about">
+        <!-- 2. One prominent copy of the star logo centered above your main headline title -->
+        <div class="hero-logo-container">
+            <img src="star_logo.png" alt="Lone Star Star Emblem" class="hero-logo">
+        </div>
+        
         <h1>LONE STAR QUICKSIGN XPRESS NOTARY</h1>
         <p class="hero-subtitle">AUTHORIZED IN TEXAS · SERVING CLIENTS WORLDWIDE</p>
         
