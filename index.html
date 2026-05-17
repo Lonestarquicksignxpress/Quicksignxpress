@@ -3,532 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lone Star Quicksign Xpress Notary</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>Download Your Clean Logo Asset</title>
     <style>
-        :root {
-            --bg-dark: #122240;      /* Royal navy blue from your design template */
-            --gold: #d4af37;         /* Metallic golden yellow color matching the accent lines */
-            --gold-light: #f3e5ab;
-            --text-light: #ffffff;
-            --text-muted: #9fb1cc;
-            --card-bg: rgba(22, 38, 70, 0.85); /* Deep translucent layout cards */
-            --border-gold: rgba(212, 175, 55, 0.3);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* WATERMARK BACKGROUND EFFECT (Using your single watermark file) */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 75vmin;
-            height: 75vmin;
-            background-image: url('watermark.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.15; /* Perfectly balanced visibility */
-            pointer-events: none;
-            z-index: -1;
-        }
-
-        /* NAVIGATION BAR */
-        header {
-            border-bottom: 2px solid var(--gold);
-            background-color: rgba(18, 34, 64, 0.96);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 16px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            font-family: 'Cinzel', serif;
-            font-size: 1.35rem;
-            font-weight: 700;
-            color: var(--text-light);
-            letter-spacing: 1px;
-        }
-
-        /* LOGO STYLING (For nav header) */
-        .logo-img {
-            height: 44px;
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0px 2px 6px rgba(0,0,0,0.4));
-        }
-
-        .nav-menu {
-            display: flex;
-            gap: 35px;
-            list-style: none;
-        }
-
-        .nav-menu a {
-            color: var(--text-light);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: color 0.3s;
-        }
-
-        .nav-menu a:hover {
-            color: var(--gold);
-        }
-
-        /* MAIN HERO FRAMEWORK */
-        .hero {
-            text-align: center;
-            padding: 70px 20px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* HERO STAR LOGO STYLING */
-        .hero-logo-container {
-            margin-bottom: 25px;
-        }
-
-        .hero-logo {
-            height: 140px; /* Bigger, clear presentation above the title */
-            width: auto;
-            object-fit: contain;
-            filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.5));
-        }
-
-        .hero h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 3.3rem;
-            font-weight: 800;
-            letter-spacing: 2px;
-            color: var(--text-light);
-            margin-bottom: 12px;
-            text-shadow: 0 3px 12px rgba(0,0,0,0.6);
-        }
-
-        .hero-subtitle {
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
-            letter-spacing: 3px;
-            margin-bottom: 55px;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-
-        /* INTERACTIVE CTAS WITH OFFICIAL BRAND LOGOS */
-        .hero-ctas {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 65px;
-            flex-wrap: wrap;
-        }
-
-        .cta-btn {
-            padding: 14px 32px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            font-weight: 600;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            background-color: var(--card-bg);
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        .cta-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        .cta-btn:hover {
-            background-color: var(--gold);
-            color: var(--bg-dark);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 22px rgba(212, 175, 55, 0.45);
-        }
-
-        /* 4-COLUMN HORIZONTAL FEATURE OVERVIEW GRID */
-        .features-section {
-            max-width: 1200px;
-            margin: 0 auto 65px;
-            padding: 0 20px;
-        }
-
-        .features-section h2 {
-            font-family: 'Cinzel', serif;
-            text-align: center;
-            font-size: 1.45rem;
-            color: var(--gold);
-            margin-bottom: 30px;
-            letter-spacing: 1.5px;
-        }
-
-        .features-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-
-        .feature-card {
-            background: linear-gradient(135deg, rgba(22,43,79,0.95) 0%, rgba(14,28,54,0.95) 100%);
-            border: 1px solid var(--border-gold);
-            border-radius: 6px;
-            padding: 24px 16px;
-            text-align: center;
-            font-size: 0.95rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        /* GEOGRAPHIC DISPATCH BOUNDS STRIP */
-        .regions-strip {
-            background-color: rgba(10, 20, 38, 0.85);
-            border-top: 1px solid var(--border-gold);
-            border-bottom: 1px solid var(--border-gold);
-            padding: 16px 20px;
-            text-align: center;
-            font-size: 0.9rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            max-width: 1100px;
-            margin: 0 auto 55px;
-            border-radius: 4px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        }
-
-        .regions-strip strong {
-            color: var(--gold);
-        }
-
-        /* TWO-COLUMN CLASSIFIED ACCORDION INTERFACE */
-        .services-section {
-            max-width: 1100px;
-            margin: 0 auto 70px;
-            padding: 55px 20px 65px;
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .services-section h2 {
-            font-family: 'Cinzel', serif;
-            text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 50px;
-            letter-spacing: 1px;
-            color: var(--text-light);
-        }
-
-        .services-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-
-        .services-column {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b1526;
+            color: #ffffff;
             display: flex;
             flex-direction: column;
-            gap: 15px;
-        }
-
-        details {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-gold);
-            border-radius: 6px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            transition: all 0.3s;
-        }
-
-        details[open] {
-            border-color: var(--gold);
-            background-color: rgba(25, 47, 84, 0.95);
-        }
-
-        summary {
-            padding: 18px 22px;
-            font-weight: 600;
-            cursor: pointer;
-            outline: none;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 1.05rem;
-            user-select: none;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
         }
-
-        summary::-webkit-details-marker {
-            display: none;
-        }
-
-        summary::after {
-            content: '+';
-            font-size: 1.4rem;
-            color: var(--gold);
-            font-weight: 400;
-            transition: transform 0.3s;
-        }
-
-        details[open] summary::after {
-            content: '−';
-        }
-
-        .details-content {
-            padding: 0 22px 20px;
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            border-top: 1px solid rgba(212, 175, 55, 0.15);
-            padding-top: 15px;
-        }
-
-        /* STATE COMPLIANCE FOOTER & MANDATORY SOS ATTORNEY DISCLAIMER */
-        footer {
-            background-color: #0b1526;
-            border-top: 2px solid var(--gold);
-            padding: 35px 20px;
+        .container {
+            background-color: #122240;
+            border: 2px solid #d4af37;
+            border-radius: 12px;
+            padding: 40px;
             text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+            max-width: 500px;
+            width: 100%;
         }
-
-        .sos-disclaimer {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            letter-spacing: 0.3px;
+        h1 {
+            color: #d4af37;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
         }
-
-        .sos-disclaimer strong {
-            color: var(--gold);
-            display: block;
-            margin-bottom: 6px;
-            font-family: 'Cinzel', serif;
+        p {
+            color: #9fb1cc;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+        .preview-box {
+            background-color: #0b1526;
+            background-image: linear-gradient(45deg, #0f1c34 25%, transparent 25%), 
+                              linear-gradient(-45deg, #0f1c34 25%, transparent 25%), 
+                              linear-gradient(45deg, transparent 75%, #0f1c34 75%), 
+                              linear-gradient(-45deg, transparent 75%, #0f1c34 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .preview-box img {
+            max-width: 100%;
+            height: 220px;
+            object-fit: contain;
+        }
+        .download-btn {
+            background-color: #d4af37;
+            color: #122240;
+            text-decoration: none;
+            padding: 14px 32px;
+            font-weight: 700;
+            font-size: 1rem;
+            border-radius: 6px;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
-
-        /* DESIGN BREAKPOINTS FOR FULL WEB RESPONSIVENESS */
-        @media (max-width: 1024px) {
-            .hero h1 { font-size: 2.6rem; }
-            .features-row { grid-template-columns: repeat(2, 1fr); }
-            .services-columns { grid-template-columns: 1fr; }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container { flex-direction: column; gap: 15px; }
-            .nav-menu { gap: 25px; }
-            .hero h1 { font-size: 2rem; }
-            .features-row { grid-template-columns: 1fr; }
+        .download-btn:hover {
+            background-color: #f3e5ab;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
         }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION HEADER -->
-    <header>
-        <div class="nav-container">
-            <div class="logo-area">
-                <!-- 1. Star logo placed cleanly in front of the navigation branding name -->
-                <img src="star_logo.png" alt="Lone Star Quicksign Logo" class="logo-img">
-                LONE STAR QUICKSIGN XPRESS NOTARY
-            </div>
-            <ul class="nav-menu">
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
-    </header>
-
-    <!-- HERO HEADER AREA -->
-    <section class="hero" id="about">
-        <!-- 2. One prominent copy of the star logo centered above your main headline title -->
-        <div class="hero-logo-container">
-            <img src="star_logo.png" alt="Lone Star Star Emblem" class="hero-logo">
-        </div>
+    <div class="container">
+        <h1>Transparent Logo Asset</h1>
+        <p>Your transparent blue and gold logo is prepared for download. This version is free of the black background remnants and ready to drop directly into your GitHub repository folder map.</p>
         
-        <h1>LONE STAR QUICKSIGN XPRESS NOTARY</h1>
-        <p class="hero-subtitle">AUTHORIZED IN TEXAS · SERVING CLIENTS WORLDWIDE</p>
-        
-        <!-- EMBEDDED CONTACT ACTION LINKS -->
-        <div class="hero-ctas" id="contact">
-            <a href="sms:+19152581693" class="cta-btn">
-                <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 9h12v2H6V9zm8 5H6v-2h8v2zm4-6H6V6h12v2z"/></svg>
-                Text Now
-            </a>
-            <a href="https://wa.me" target="_blank" class="cta-btn">
-                <svg viewBox="0 0 24 24"><path d="M12.012 2c-5.508 0-9.988 4.479-9.988 9.987 0 1.763.459 3.418 1.261 4.865l-1.285 4.693 4.805-1.258c1.399.763 2.993 1.199 4.686 1.199 5.507 0 9.987-4.479 9.987-9.987 0-5.508-4.48-9.987-9.987-9.987zm4.981 14.113c-.225.632-1.304 1.189-1.79 1.239-.441.044-.997.067-2.613-.594-2.066-.845-3.393-2.951-3.496-3.088-.103-.138-.838-1.113-.838-2.122 0-1.009.527-1.503.714-1.706.188-.204.412-.254.55-.254.138 0 .275.002.395.008.125.006.292-.047.457.348.169.406.579 1.413.629 1.514.051.102.084.219.016.356-.069.137-.103.222-.206.342-.103.12-.216.27-.309.362-.103.102-.211.213-.092.418.12.204.531.876 1.139 1.417.785.699 1.445.914 1.651 1.018.206.102.327.086.447-.052.12-.138.514-.598.652-.803.138-.204.275-.172.463-.102.188.069 1.199.564 1.405.667.206.102.343.153.394.242.052.088.052.512-.173 1.144z"/></svg>
-                WhatsApp
-            </a>
-            <a href="mailto:quicksignxpress@gmail.com" class="cta-btn">
-                <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                Email Inbox
-            </a>
+        <!-- Checkerboard display wrapper to prove total transparent background status -->
+        <div class="preview-box">
+            <img src="https://ibb.co" alt="Cleaned Logo Preview">
         </div>
-    </section>
 
-    <!-- HORIZONTAL OVERVIEW ROW -->
-    <section class="features-section">
-        <h2>Our Available Formats & Features</h2>
-        <div class="features-row">
-            <div class="feature-card">💻 Remote / Online</div>
-            <div class="feature-card">🚗 Mobile Dispatch</div>
-            <div class="feature-card">📍 In-Person Signing</div>
-            <div class="feature-card">⚡ Same-Day / Emergency</div>
-        </div>
-    </section>
-
-    <!-- GEOGRAPHIC DISPATCH BOUNDS STRIP -->
-    <div class="regions-strip">
-        📍 <strong>In-Person Service Areas:</strong> Collin County | Dallas County | Denton County | Grayson County
+        <!-- Master Direct Action Trigger Box Link -->
+        <a href="https://ibb.co" download="star_logo.png" target="_blank" class="download-btn">
+            Download PNG File
+        </a>
     </div>
-
-    <!-- 2-COLUMN CLASSIFIED EXPANDABLE ACCORDION INTERFACE -->
-    <section class="services-section" id="services">
-        <h2>Our Specialized Services</h2>
-        
-        <div class="services-columns">
-            <div class="services-column">
-                <details>
-                    <summary>🏠 Loan & Real Estate Closings</summary>
-                    <div class="details-content">
-                        Purchase agreements, refinances, deeds of trust, and full loan closing packages managed systematically by an expert Certified Loan Signing Agent (LSA/NSA).
-                    </div>
-                </details>
-
-                <details>
-                    <summary>✍️ Powers of Attorney, Wills & Living Trusts</summary>
-                    <div class="details-content">
-                        Essential estate planning updates and directives executed under careful security guidelines, strict confidentiality, and complete professional care.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>📜 Jurats & Acknowledgments</summary>
-                    <div class="details-content">
-                        Precise administration of legal evidentiary verifications, visual identification reviews, formal affirmations, and required identity certificates.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>🛡️ Affidavits & Sworn Statements</summary>
-                    <div class="details-content">
-                        Formal sworn legal declarations, affidavits, and truth assertions generated for judicial proceedings, immigration forms, or structural compliance.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>📁 Deeds & Property Documents</summary>
-                    <div class="details-content">
-                        Official execution support for quitclaim deeds, warranty deeds, asset distribution forms, and vehicle title transfer assignments.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>🎓 School & Adoption Records</summary>
-                    <div class="details-content">
-                        Certified execution handling for academic dossiers, transcripts, diploma certifications, enrollment sheets, and international adoption filings.
-                    </div>
-                </details>
-            </div>
-
-            <div class="services-column">
-                <details>
-                    <summary>📶 Mobile & Virtual Signings</summary>
-                    <div class="details-content">
-                        Secure Remote Online Notarization (RON) utilizing live, encrypted video feeds built to validate and sign critical assets from any location worldwide.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>🤝 Witness Services</summary>
-                    <div class="details-content">
-                        Providing impartial, certified third-party signature witnesses required to physically observe and validate the execution of binding agreements.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>💼 Business Contracts & Agreements</summary>
-                    <div class="details-content">
-                        Corporate operational templates, partnership sheets, operational NDAs, structural retail files, and general commercial employment forms.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>🏥 Medical Directives & Releases</summary>
-                    <div class="details-content">
-                        Advance health directives, living wills, clear HIPAA document releases, and emergency bedside hospital or clinic signing dispatch.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>🌍 Apostille Services</summary>
-                    <div class="details-content">
-                        Specialized document tracking and handling optimized directly to meet the authentication criteria of the Texas Secretary of State for foreign destinations.
-                    </div>
-                </details>
-
-                <details>
-                    <summary>✈️ Travel Permissions & Minor Consent</summary>
-                    <div class="details-content">
-                        Certified parental consent letters, passport application authorizations, and explicit travel declarations required for underage minors crossing border lines.
-                    </div>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- STATE COMPLIANCE LEGAL DISCLAIMER FOOTER -->
-    <footer>
-        <div class="sos-disclaimer">
-            <strong>Notice Regarding Legal Advice & Services</strong>
-            I am not an attorney licensed to practice law in this state. I am not allowed to draft legal documents, give advice on legal matters, including immigration, or charge a fee for those activities.
-        </div>
-    </footer>
 
 </body>
 </html>
