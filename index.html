@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lone Star QuickSign Xpress Notary</title>
+    <title>Lone Star Quicksign Notary</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0d1b2a;
-            --bg-light: #f8f7f4;
-            --gold: #c5a059;
+            --bg-dark: #0a1128;
+            --gold: #d4af37;
             --text-light: #ffffff;
-            --text-dark: #1b263b;
-            --card-bg: #ffffff;
+            --text-dark: #1c2541;
+            --card-dark: #111a36;
+            --border-color: rgba(212, 175, 55, 0.2);
         }
 
         * {
@@ -25,72 +25,41 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             line-height: 1.6;
         }
 
-        /* TOP BANNER & NAVIGATION (Picture 3 Fixes) */
-        .top-banner {
-            background-color: #07111e;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.85rem;
-            padding: 8px 5%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .top-banner-left span {
-            margin-right: 15px;
-        }
-
-        .top-banner-right a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            margin-left: 15px;
-            font-weight: 500;
-        }
-
+        /* NAVIGATION CLEANUP (Removed Top Utility Bar & Text Us Now Button) */
         header {
-            background-color: var(--bg-dark);
-            border-bottom: 2px solid var(--gold);
+            border-bottom: 1px solid var(--border-color);
+            background-color: rgba(10, 17, 40, 0.95);
             position: sticky;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
 
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 15px 20px;
+            padding: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--text-light);
             font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            font-weight: bold;
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text-light);
             letter-spacing: 1px;
         }
 
-        .logo-star {
-            color: var(--gold);
-            font-size: 1.4rem;
-        }
-
-        /* Combined Menu Items & Action Button in Single Line */
         .nav-menu {
             display: flex;
-            align-items: center;
-            gap: 30px;
+            gap: 40px;
             list-style: none;
         }
 
@@ -100,7 +69,7 @@
             font-size: 0.95rem;
             font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
             transition: color 0.3s;
         }
 
@@ -108,76 +77,45 @@
             color: var(--gold);
         }
 
-        .nav-btn {
-            background-color: var(--gold);
-            color: var(--bg-dark) !important;
-            padding: 10px 20px;
-            border-radius: 4px;
-            font-weight: 600 !important;
-            transition: opacity 0.3s;
-        }
-
-        .nav-btn:hover {
-            opacity: 0.9;
-        }
-
-        /* HERO SECTION (Picture 1, 2, & 4 Streamlining) */
+        /* HERO SECTION (Enlarged Single Line Title & Fixed Links) */
         .hero {
-            background-color: var(--bg-dark);
-            color: var(--text-light);
             text-align: center;
-            padding: 80px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .hero-star-icon {
-            width: 60px;
-            height: 60px;
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
-            color: var(--gold);
-            font-size: 1.8rem;
+            padding: 100px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .hero h1 {
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
-            line-height: 1.2;
+            font-size: 3.8rem;
+            font-weight: 800;
             letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .hero h1 span {
-            display: block;
-            font-size: 2.2rem;
             color: var(--text-light);
-            margin-top: 5px;
+            margin-bottom: 15px;
+            white-space: nowrap;
         }
 
         .hero-subtitle {
             color: var(--gold);
             font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 45px;
         }
 
+        /* Text, Whatsapp, Email Inline Action Buttons */
         .hero-ctas {
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 40px;
+            margin-bottom: 60px;
             flex-wrap: wrap;
         }
 
         .cta-btn {
-            padding: 14px 30px;
+            padding: 12px 28px;
             border-radius: 4px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
             text-decoration: none;
             text-transform: uppercase;
@@ -186,204 +124,154 @@
             align-items: center;
             gap: 10px;
             transition: all 0.3s;
-        }
-
-        .cta-primary {
-            background-color: var(--gold);
-            color: var(--bg-dark);
-        }
-
-        .cta-secondary {
-            border: 2px solid rgba(255,255,255,0.3);
-            color: var(--text-light);
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
         }
 
         .cta-btn:hover {
+            background-color: var(--gold);
+            color: var(--bg-dark);
             transform: translateY(-2px);
         }
 
-        .cta-secondary:hover {
-            border-color: var(--gold);
-            color: var(--gold);
+        /* FEATURES GRID (4 Items Formatted In Single Horizontal Row) */
+        .features-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
         }
 
-        /* ACCORDION REPLACEMENT (Fixes Congested Picture 2 Badges) */
-        .accordion-container {
-            max-width: 650px;
-            margin: 0 auto;
-            text-align: left;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .accordion-title {
-            color: var(--gold);
-            font-size: 1.1rem;
-            margin-bottom: 15px;
+        .features-section h2 {
+            font-family: 'Cinzel', serif;
             text-align: center;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .features-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-card {
+            background-color: var(--card-dark);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* SERVICES SECTION (Accordion Layout Sorted into 2 Columns) */
+        .services-section {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px 100px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .services-section h2 {
+            font-family: 'Cinzel', serif;
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            letter-spacing: 1px;
+        }
+
+        .services-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .services-column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
         details {
-            background: rgba(255, 255, 255, 0.05);
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            transition: background 0.3s;
+            background-color: var(--card-dark);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            transition: border-color 0.3s;
         }
 
         details[open] {
-            background: rgba(255, 255, 255, 0.08);
+            border-color: var(--gold);
         }
 
         summary {
-            padding: 14px 20px;
-            font-weight: 500;
+            padding: 18px 22px;
+            font-weight: 600;
             cursor: pointer;
-            color: var(--text-light);
             outline: none;
             list-style: none;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 1.05rem;
+        }
+
+        summary::-webkit-details-marker {
+            display: none;
         }
 
         summary::after {
-            content: '➔';
-            font-size: 0.8rem;
+            content: '+';
+            font-size: 1.3rem;
             color: var(--gold);
             transition: transform 0.3s;
         }
 
         details[open] summary::after {
-            transform: rotate(90deg);
+            content: '−';
         }
 
         .details-content {
-            padding: 0 20px 15px;
-            color: rgba(255, 255, 255, 0.8);
+            padding: 0 22px 20px;
+            color: rgba(255, 255, 255, 0.75);
             font-size: 0.95rem;
+            line-height: 1.6;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            padding-top: 15px;
         }
 
-        /* SERVICES SECTION (Picture 5 Fixes: Big, Clean, Horizontal Row) */
-        .services-section {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-header h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 2.5rem;
-            color: var(--text-dark);
-            letter-spacing: 1px;
-            margin-bottom: 10px;
-        }
-
-        .section-header p {
-            color: #666;
-            font-size: 1.1rem;
-        }
-
-        /* Large horizontal row for primary cards */
-        .services-row {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .service-card {
-            background-color: var(--card-bg);
-            border-radius: 8px;
-            padding: 35px 25px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--gold);
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-        }
-
-        .service-icon {
-            font-size: 2.2rem;
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            margin-bottom: 15px;
-            min-height: 48px;
-            display: flex;
-            align-items: center;
-        }
-
-        .service-card p {
-            font-size: 0.95rem;
-            color: #555;
-            line-height: 1.5;
-        }
-
-        /* Tags container below the main cards */
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-            max-width: 1100px;
-            margin: 40px auto 0;
-            padding-top: 30px;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .tag {
-            background-color: #e9ecef;
-            color: var(--text-dark);
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 1100px) {
-            .services-row {
+        /* RESPONSIVE DESIGN BREAKPOINTS */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 2.8rem;
+                white-space: normal;
+            }
+            .features-row {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            .services-columns {
+                grid-template-columns: 1fr;
             }
         }
 
         @media (max-width: 768px) {
-            .top-banner, .nav-menu {
-                flex-direction: column;
-                gap: 10px;
-            }
             .nav-container {
                 flex-direction: column;
                 gap: 15px;
             }
+            .nav-menu {
+                gap: 25px;
+            }
             .hero h1 {
                 font-size: 2.2rem;
             }
-            .hero h1 span {
-                font-size: 1.6rem;
-            }
-            .services-row {
+            .features-row {
                 grid-template-columns: 1fr;
             }
         }
@@ -391,158 +279,136 @@
 </head>
 <body>
 
-    <!-- TOP HEADER UTILITY (Picture 3 Clean Up) -->
-    <div class="top-banner">
-        <div class="top-banner-left">
-            <span>📍 Denton & Grayson Counties</span>
-            <span>🌐 Remote Worldwide</span>
-        </div>
-        <div class="top-banner-right">
-            <a href="tel:915-258-1693">📱 Text/Call: 915-258-1693</a>
-            <a href="https://wa.me" target="_blank">💬 WhatsApp</a>
-        </div>
-    </div>
-
-    <!-- MAIN HEADER NAVIGATION (Picture 4 Feature Request - Perfect Single Line Alignment) -->
+    <!-- STYLISH HEADER NAVIGATION -->
     <header>
         <div class="nav-container">
-            <div class="logo-area">
-                <span class="logo-star">★</span> LONE STAR QUICKSIGN
-            </div>
+            <div class="logo-area">LONE STAR QUICKSIGN NOTARY</div>
             <ul class="nav-menu">
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="tel:915-258-1693" class="nav-btn">📳 Text Us Now</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- HERO HEADER SECTION -->
+    <!-- HERO CORE HEADER AREA -->
     <section class="hero" id="about">
-        <div class="hero-star-icon">★</div>
-        <h1>LONE STAR QUICKSIGN<span>XPRESS NOTARY</span></h1>
+        <h1>LONE STAR QUICKSIGN NOTARY</h1>
         <p class="hero-subtitle">AUTHORIZED IN TEXAS · SERVING CLIENTS WORLDWIDE</p>
         
-        <!-- Primary Contact CTAs -->
-        <div class="hero-ctas">
-            <a href="tel:915-258-1693" class="cta-btn cta-primary">📳 Text Or Call Now</a>
-            <a href="https://wa.me" target="_blank" class="cta-btn cta-secondary">💬 WhatsApp Us</a>
-        </div>
-
-        <!-- NEW ACCORDION COMPONENT (Cleans up congested Picture 2 & eliminates Picture 4 section duplicates) -->
-        <div class="accordion-container">
-            <p class="accordion-title">Our Available Formats & Features</p>
-            
-            <details>
-                <summary>💻 Remote • Online</summary>
-                <div class="details-content">
-                    Secure Remote Online Notarization (RON) accessible via standard video calls. Available to clients in any U.S. state or located internationally.
-                </div>
-            </details>
-
-            <details>
-                <summary>🚗 Mobile • We Come To You</summary>
-                <div class="details-content">
-                    Professional, on-demand mobile dispatch service directly to your home, workspace, hospital room, or preferred location across North Texas.
-                </div>
-            </details>
-
-            <details>
-                <summary>📍 In-Person • North Texas</summary>
-                <div class="details-content">
-                    Traditional face-to-face in-person document signing, customized efficiently for clients across the North Texas region.
-                </div>
-            </details>
-
-            <details>
-                <summary>⚡ Same-Day & Emergency Available</summary>
-                <div class="details-content">
-                    Urgent timeline coverage including same-day reservations, emergency appointments, late evenings, and full weekend openings.
-                </div>
-            </details>
+        <!-- Streamlined Action Links -->
+        <div class="hero-ctas" id="contact">
+            <a href="sms:+19152581693" class="cta-btn">📱 Text</a>
+            <a href="https://wa.me" target="_blank" class="cta-btn">💬 WhatsApp</a>
+            <a href="mailto:info@lonestarquicksignxpress.com" class="cta-btn">✉️ Email</a>
         </div>
     </section>
 
-    <!-- SERVICES MATRIX (Picture 5 - Scaled Up, Grid Row View) -->
+    <!-- HORIZONTAL OVERVIEW ROW -->
+    <section class="features-section">
+        <h2>Our Available Formats & Features</h2>
+        <div class="features-row">
+            <div class="feature-card">💻 Remote / Online</div>
+            <div class="feature-card">🚗 Mobile</div>
+            <div class="feature-card">📍 In-Person</div>
+            <div class="feature-card">⚡ Same-Day / Emergency Requests</div>
+        </div>
+    </section>
+
+    <!-- 2-COLUMN ACCORDION COMPONENT -->
     <section class="services-section" id="services">
-        <div class="section-header">
-            <h2>What We Notarize</h2>
-            <p>All services are fully configured for mobile, in-person, or remote-online platforms 7 days a week.</p>
-        </div>
+        <h2>Our Services</h2>
+        
+        <div class="services-columns">
+            <!-- Left Column Items -->
+            <div class="services-column">
+                <details>
+                    <summary>🏠 Loan & Real Estate Closings</summary>
+                    <div class="details-content">
+                        Purchase agreements, refinances, deeds of trust, and full loan closing packages. Handled reliably by a Certified Loan Signing Agent (LSA/NSA).
+                    </div>
+                </details>
 
-        <!-- Top row: Primary large items scaled up side-by-side -->
-        <div class="services-row">
-            <div class="service-card">
-                <div class="service-icon">🏠</div>
-                <h3>Loan & Real Estate Closings</h3>
-                <p>Purchase agreements, refinances, deeds of trust, and full loan closing packages managed by a Certified Loan Signing Agent (LSA/NSA).</p>
+                <details>
+                    <summary>✍️ Powers of Attorney, Wills & Living Trusts</summary>
+                    <div class="details-content">
+                        Essential estate planning updates processed with absolute care, complete confidentiality, and deep professional execution.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>📄 General Notarization</summary>
+                    <div class="details-content">
+                        Quick processing for common jurats, acknowledgments, oaths, binding affirmations, copy certifications, and witness signatures.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🛡️ Affidavits & Sworn Statements</summary>
+                    <div class="details-content">
+                        Formal legal declarations and sworn documentation prepared for court procedures, immigration requirements, or personal files.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>📁 Deeds & Title Documents</summary>
+                    <div class="details-content">
+                        Official validation setups for property deeds, quitclaim deeds, transfer documents, and vehicle title transfers.
+                    </div>
+                </details>
+
+                <details>
+                    <summary>🎓 School & Adoption Documents</summary>
+                    <div class="details-content">
+                        Official certification for academic transcripts, diploma verifications, enrollment papers, and international adoption tracking files.
+                    </div>
+                </details>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon">✍️</div>
-                <h3>Powers of Attorney & Trusts</h3>
-                <p>Delivering absolute care, complete confidentiality, and absolute professionalism for essential estate planning papers and living trusts.</p>
-            </div>
+            <!-- Right Column Items -->
+            <div class="services-column">
+                <details>
+                    <summary>📶 Mobile & Virtual Signings (RON)</summary>
+                    <div class="details-content">
+                        Secure Remote Online Notarization platform operations using streaming audio-video tools for clients located anywhere.
+                    </div>
+                </details>
 
-            <div class="service-card">
-                <div class="service-icon">📄</div>
-                <h3>General Notarization</h3>
-                <p>Quick execution of jurats, acknowledgments, formal oaths, binding affirmations, copy certifications, and certified signature witnessing.</p>
-            </div>
+                <details>
+                    <summary>💼 Business Contracts & Agreements</summary>
+                    <div class="details-content">
+                        Corporate agreements, partnership setups, non-disclosure sheets (NDAs), commercial legal papers, and employment forms.
+                    </div>
+                </details>
 
-            <div class="service-card">
-                <div class="service-icon">🛡️</div>
-                <h3>Affidavits & Statements</h3>
-                <p>Sworn legal declarations and formal testimony layout ready for court presentations, immigration frameworks, or specific personal needs.</p>
-            </div>
-        </div>
+                <details>
+                    <summary>🏥 Medical Directives & Releases</summary>
+                    <div class="details-content">
+                        Advance health directives, clear HIPAA release forms, and emergency bedside hospital signings handled with priority care.
+                    </div>
+                </details>
 
-        <!-- Bottom row: Remaining primary items -->
-        <div class="services-row">
-            <div class="service-card">
-                <div class="service-icon">📶</div>
-                <h3>Mobile & Virtual Signings</h3>
-                <p>Secure Remote Online Notarization (RON) using live streaming video features built for fast validation anywhere on earth.</p>
-            </div>
+                <details>
+                    <summary>🌍 Apostille Services</summary>
+                    <div class="details-content">
+                        Specialized document preparation and authorization routing built directly around the Texas Secretary of State guidelines for global usage.
+                    </div>
+                </details>
 
-            <div class="service-card">
-                <div class="service-icon">💼</div>
-                <h3>Business Contracts</h3>
-                <p>Corporate accounts, formal partnership documents, non-disclosure agreements (NDAs), and complex commercial agreements.</p>
-            </div>
+                <details>
+                    <summary>📈 Financial & Insurance Documents</summary>
+                    <div class="details-content">
+                        Validation support for banking forms, asset statements, insurance claims, beneficiary structural assignments, and loan profiles.
+                    </div>
+                </details>
 
-            <div class="service-card">
-                <div class="service-icon">🏥</div>
-                <h3>Medical Directives</h3>
-                <p>Advance directive structures, HIPAA release files, and critical hospital/clinic bedside emergency updates available on short notice.</p>
+                <details>
+                    <summary>✈️ Parental Consent & Travel Permission</summary>
+                    <div class="details-content">
+                        Certified travel authorization forms and clear parental consent approvals required for minors traveling across international borders.
+                    </div>
+                </details>
             </div>
-
-            <div class="service-card">
-                <div class="service-icon">🌍</div>
-                <h3>Apostille Services</h3>
-                <p>Authentication handling for international document submission with specialized tracking through the Texas Secretary of State guidelines.</p>
-            </div>
-        </div>
-
-        <!-- Document Tags Index Section -->
-        <div class="tags-container">
-            <div class="tag">Affidavits</div>
-            <div class="tag">Contracts</div>
-            <div class="tag">Deeds</div>
-            <div class="tag">Wills & Codicils</div>
-            <div class="tag">Power of Attorney</div>
-            <div class="tag">Vehicle Title Transfers</div>
-            <div class="tag">Adoption Documents</div>
-            <div class="tag">School Documents</div>
-            <div class="tag">Employment Forms</div>
-            <div class="tag">Insurance Documents</div>
-            <div class="tag">Parental Consent</div>
-            <div class="tag">Permission to Travel</div>
-            <div class="tag">Medical Documents</div>
-            <div class="tag">Business Documents</div>
-            <div class="tag">Loan Documents</div>
-            <div class="tag">Financial Documents</div>
         </div>
     </section>
 
