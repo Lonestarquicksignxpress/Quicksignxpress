@@ -11,7 +11,6 @@
 
 <style>
 :root{
-    /* Matched directly to the logo: navy star body + vivid golden-yellow arrow */
     --bg-dark:#0a1830;
     --gold:#f5c200;
     --gold-hover:#ffd633;
@@ -35,7 +34,6 @@ body{
     position:relative;
 }
 
-/* ── WATERMARK ── */
 body::before{
     content:"";
     position:fixed;
@@ -50,7 +48,6 @@ body::before{
     filter: brightness(2) saturate(0);
 }
 
-/* ── HEADER ── */
 header{
     border-bottom:2px solid var(--gold);
     background:rgba(11,28,58,0.94);
@@ -69,7 +66,6 @@ header{
     align-items:center;
 }
 
-/* Small logo + text side-by-side in nav */
 .logo-area{
     display:flex;
     align-items:center;
@@ -119,7 +115,6 @@ header{
 
 .nav-menu a:hover{ color:var(--gold); }
 
-/* ── HERO ── */
 .hero{
     max-width:1200px;
     margin:auto;
@@ -130,7 +125,6 @@ header{
     align-items:center;
 }
 
-/* Logo + title — centered horizontal row */
 .hero-header-block{
     display:flex;
     flex-direction:row;
@@ -141,7 +135,6 @@ header{
     text-align:center;
 }
 
-/* Big logo to the left */
 .hero .hero-logo-main{
     height:190px;
     width:auto;
@@ -165,11 +158,31 @@ header{
     font-family:'Cinzel',serif;
     font-size:1.2rem;
     letter-spacing:3px;
-    margin-bottom:45px;
+    margin-bottom:28px;
     font-weight:600;
 }
 
-/* ── CTAS ── */
+/* ── NSA BADGE ── */
+.nsa-badge-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:40px;
+}
+
+.nsa-badge{
+    height:90px;
+    width:auto;
+    object-fit:contain;
+    filter:drop-shadow(0 4px 14px rgba(245,194,0,0.35));
+    transition:transform 0.3s ease, filter 0.3s ease;
+}
+
+.nsa-badge:hover{
+    transform:scale(1.06);
+    filter:drop-shadow(0 6px 20px rgba(245,194,0,0.55));
+}
+
 .hero-ctas{
     display:flex;
     justify-content:center;
@@ -206,7 +219,6 @@ header{
     box-shadow:0 6px 20px rgba(245,194,0,0.3);
 }
 
-/* ── SECONDARY CTA ROW ── */
 .hero-secondary-ctas{
     display:flex;
     justify-content:center;
@@ -265,12 +277,11 @@ header{
     transform:translateY(-2px);
 }
 
-/* ── BOOKING FORM SECTION ── */
 .booking-section{
     max-width:700px;
     margin:0 auto 70px;
     padding:0 20px;
-    display:none; /* shown via JS when button clicked */
+    display:none;
 }
 
 .booking-section.open{ display:block; }
@@ -371,7 +382,6 @@ header{
 .form-success h4{ font-family:'Cinzel',serif; font-size:1.4rem; color:var(--gold); margin-bottom:10px; }
 .form-success p{ color:var(--text-muted); font-size:1rem; }
 
-
 .features-section{
     max-width:1100px;
     margin:0 auto 70px;
@@ -424,7 +434,6 @@ header{
     flex-shrink:0;
 }
 
-/* Zooming car animation for mobile notary */
 .feature-card.mobile-notary svg{
     animation: zoom-right 1.8s ease-in-out infinite alternate;
 }
@@ -443,7 +452,6 @@ header{
     color:var(--text-light);
 }
 
-/* ── SERVICE AREAS STRIP ── */
 .regions-strip{
     background:rgba(5,14,31,0.92);
     border-top:2px solid var(--gold);
@@ -509,7 +517,6 @@ header{
     opacity:0.6;
 }
 
-/* ── SERVICES ── */
 .services-section{
     max-width:1100px;
     margin:auto;
@@ -583,7 +590,6 @@ details[open] summary::after{ content:'−'; }
     line-height:1.75;
 }
 
-/* ── FOOTER ── */
 footer{
     background:#050e1f;
     border-top:2px solid var(--gold);
@@ -607,7 +613,6 @@ footer{
     letter-spacing:1px;
 }
 
-/* ── RESPONSIVE ── */
 @media(max-width:1024px){
     .hero h1{ font-size:2.4rem; }
     .services-columns{ grid-template-columns:1fr; }
@@ -620,10 +625,7 @@ footer{
 
 @media(max-width:768px){
     .nav-container{ flex-direction:column; gap:14px; }
-    .hero-header-block{
-        flex-direction:column;
-        gap:16px;
-    }
+    .hero-header-block{ flex-direction:column; gap:16px; }
     .hero h1{ font-size:1.75rem; text-align:center; }
     .hero .hero-logo-main{ height:110px; }
     .features-section h2{ font-size:1.7rem; }
@@ -634,6 +636,7 @@ footer{
     .logo-subtitle{ font-size:0.62rem; }
     .regions-label{ font-size:1.1rem; }
     .county-item{ font-size:1rem; padding:0 16px; }
+    .nsa-badge{ height:72px; }
 }
 
 @media(max-width:480px){
@@ -641,17 +644,16 @@ footer{
     .form-row{ grid-template-columns:1fr; }
     .booking-card{ padding:28px 18px; }
     .hero-secondary-ctas{ flex-direction:column; align-items:center; }
+    .nsa-badge{ height:60px; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- ── HEADER ── -->
 <header>
     <div class="nav-container">
         <div class="logo-area">
-            <!-- Small logo in nav bar -->
             <img src="star_logo.png" alt="Lone Star QuickSign Logo" class="nav-logo">
             <div>
                 <div class="logo-text-main">LONE STAR QUICKSIGN XPRESS</div>
@@ -666,10 +668,8 @@ footer{
     </div>
 </header>
 
-<!-- ── HERO ── -->
 <section class="hero" id="about">
 
-    <!-- Logo centered above title -->
     <div class="hero-header-block">
         <img src="star_logo.png" alt="Lone Star QuickSign Emblem" class="hero-logo-main">
         <h1>LONE STAR QUICKSIGN<br>XPRESS NOTARY</h1>
@@ -677,7 +677,11 @@ footer{
 
     <p class="hero-subtitle">AUTHORIZED IN TEXAS &middot; SERVING CLIENTS WORLDWIDE</p>
 
-    <!-- Contact buttons -->
+    <!-- NSA Member Badge -->
+    <div class="nsa-badge-wrap">
+        <img src="nsa_member_badge.png" alt="National Notary Association Member Badge" class="nsa-badge">
+    </div>
+
     <div class="hero-ctas" id="contact">
         <a href="sms:+19152581693" class="cta-btn btn-text">
             <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
@@ -693,7 +697,6 @@ footer{
         </a>
     </div>
 
-    <!-- Book + View Services -->
     <div class="hero-secondary-ctas">
         <a href="#booking" class="btn-book" onclick="openBooking(event)">
             <svg viewBox="0 0 24 24"><path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.89 3 3 3.9 3 5v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm0 16H5V9h14v10zm0-12H5V5h14v2zM7 11h2v2H7zm4 0h2v2h-2zm4 0h2v2h-2z"/></svg>
@@ -705,10 +708,8 @@ footer{
     </div>
 </section>
 
-<!-- ── BOOKING FORM ── -->
 <div class="booking-section" id="booking">
     <div class="booking-card">
-        <!-- Success state (hidden until submitted) -->
         <div class="form-success" id="formSuccess">
             <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <circle cx="12" cy="12" r="10"/>
@@ -718,7 +719,6 @@ footer{
             <p>Thank you! We will contact you within 24 hours to confirm your appointment.</p>
         </div>
 
-        <!-- Form -->
         <div id="bookingForm">
             <h3>📅 Book an Appointment</h3>
 
@@ -793,13 +793,10 @@ footer{
     </div>
 </div>
 
-
-<!-- ── FEATURES: 4 cards in one row ── -->
 <section class="features-section">
     <h2>Our Available Features</h2>
     <div class="features-row">
 
-        <!-- Remote / Online — monitor -->
         <div class="feature-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                 <rect x="2" y="3" width="20" height="13" rx="2"/>
@@ -809,34 +806,25 @@ footer{
             <span class="feature-label">Remote / Online</span>
         </div>
 
-        <!-- Mobile Notary — ZOOMING CAR (notary travels to you) -->
         <div class="feature-card mobile-notary">
             <svg viewBox="0 0 64 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <!-- Speed lines behind car -->
                 <line x1="2"  y1="14" x2="14" y2="14" stroke="#f5c200" stroke-width="1.5" stroke-linecap="round" opacity="0.5"/>
                 <line x1="2"  y1="18" x2="12" y2="18" stroke="#f5c200" stroke-width="1.2" stroke-linecap="round" opacity="0.35"/>
                 <line x1="4"  y1="22" x2="13" y2="22" stroke="#f5c200" stroke-width="1"   stroke-linecap="round" opacity="0.25"/>
-                <!-- Car body -->
                 <rect x="16" y="16" width="36" height="10" rx="3" fill="#f5c200"/>
-                <!-- Cabin / roof -->
                 <path d="M22 16 L26 8 L44 8 L48 16 Z" fill="#f5c200"/>
-                <!-- Windows -->
                 <rect x="27" y="9.5" width="7"  height="5" rx="1" fill="#0a1830" opacity="0.7"/>
                 <rect x="36" y="9.5" width="7"  height="5" rx="1" fill="#0a1830" opacity="0.7"/>
-                <!-- Wheels -->
                 <circle cx="24" cy="26" r="4" fill="#0a1830" stroke="#f5c200" stroke-width="1.5"/>
                 <circle cx="44" cy="26" r="4" fill="#0a1830" stroke="#f5c200" stroke-width="1.5"/>
                 <circle cx="24" cy="26" r="1.5" fill="#f5c200"/>
                 <circle cx="44" cy="26" r="1.5" fill="#f5c200"/>
-                <!-- Headlight -->
                 <rect x="51" y="18" width="4" height="3" rx="1" fill="#ffd633"/>
-                <!-- Door line -->
                 <line x1="35" y1="16" x2="35" y2="26" stroke="#0b1c3a" stroke-width="1" opacity="0.5"/>
             </svg>
             <span class="feature-label">Mobile Notary</span>
         </div>
 
-        <!-- In-Person Signing — pen on paper -->
         <div class="feature-card">
             <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 20h9"/>
@@ -845,7 +833,6 @@ footer{
             <span class="feature-label">In-Person Signing</span>
         </div>
 
-        <!-- Same-Day / Emergency — lightning bolt -->
         <div class="feature-card">
             <svg viewBox="0 0 24 24" fill="#f5c200">
                 <path d="M13 2L4.5 13.5H11L10 22l9.5-12H14z"/>
@@ -856,11 +843,9 @@ footer{
     </div>
 </section>
 
-<!-- ── SERVICE AREAS ── -->
 <div class="regions-strip">
     <div class="regions-inner">
         <div class="regions-label">
-            <!-- SVG map drop-pin, no emoji -->
             <svg viewBox="0 0 24 24" fill="#f5c200" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"/>
             </svg>
@@ -875,7 +860,6 @@ footer{
     </div>
 </div>
 
-<!-- ── SERVICES ── -->
 <section class="services-section" id="services">
     <h2>Our Specialized Services</h2>
     <div class="services-columns">
@@ -964,7 +948,6 @@ footer{
             <details>
                 <summary>
                     <span class="sum-icon">
-                        <!-- Car icon for mobile/virtual — notary comes to you -->
                         <svg viewBox="0 0 24 24" fill="none" stroke="#f5c200" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
                             <path d="M5 17H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h13l4 4v4a2 2 0 0 1-2 2h-1"/>
                             <circle cx="7"  cy="17" r="2"/>
@@ -1092,17 +1075,14 @@ function submitBooking(){
         'Notes: '    + (notes   || 'None') + '\n'
     );
 
-    // Open email client in new tab so page stays put
     window.open('mailto:quicksignxpress@gmail.com?subject=' + subject + '&body=' + body, '_self');
 
-    // Show success message immediately
     document.getElementById('bookingForm').style.display = 'none';
     const s = document.getElementById('formSuccess');
     s.style.display    = 'flex';
     s.style.flexDirection = 'column';
     s.style.alignItems = 'center';
 
-    // WhatsApp backup notification in a new tab after short delay
     const wa = 'https://wa.me/19152581693?text=' +
         encodeURIComponent(
             '📅 *New Appointment Request*\n' +
